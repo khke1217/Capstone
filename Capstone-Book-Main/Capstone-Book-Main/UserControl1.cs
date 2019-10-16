@@ -17,13 +17,26 @@ namespace Capstone_Book_Main
         public UserControl1()
         {
             InitializeComponent();
-            db_manager();
+            db_init();
             
         }
-
+        public class BookMeta
+        {
+            public string title;
+            public string series;
+            public string alternate_series;
+            public string storyarc;
+            public string seriesgroup;
+            public string language;
+            public List<string> genre;
+            public string format;
+            public string age_rating;
+            public string blackandwhite;
+            public string manga;
+        }
         bool canmodi = false;
 
-        private void db_manager()
+        private void db_init()
         {
             try
             {
