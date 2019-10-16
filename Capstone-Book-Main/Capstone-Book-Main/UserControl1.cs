@@ -20,7 +20,7 @@ namespace Capstone_Book_Main
             db_init();
             
         }
-        public class BookMeta
+        public class BookMetaString // 제목 등 책 관련 string 변수
         {
             public string title;
             public string series;
@@ -34,6 +34,33 @@ namespace Capstone_Book_Main
             public string blackandwhite;
             public string manga;
         }
+        public class BookMetaInt // 페이지 등 책관련 int 변수
+        {
+            public int number;
+            public int count;
+            public int volume;
+            public int alternate_count;
+            public int year;
+            public int month;
+            public int day;
+            public int page_count;
+
+        }
+
+        public class MakerMeta // 작가 등 출판관련 string 변수
+        {
+            public string writer;
+            public string penciler;
+            public string inker;
+            public string colorist;
+            public string letterer;
+            public string cover_artist;
+            public string editor;
+            public string publisher;
+            public string imprint;
+
+        }
+
         bool canmodi = false;
 
         private void db_init()
@@ -54,9 +81,9 @@ namespace Capstone_Book_Main
                     "title TEXT, series TEXT, number INT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
                     "alternate_number INT, storyarc TEXT, seriesgroup TEXT, " +
-                    "alternate_count INT, year INT, month INT, DAY INT, " +
+                    "alternate_count INT, year INT, month INT, day INT, " +
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
-                    "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
+                    "letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
                     "age_rating TEXT, blackandwhite TEXT, manga TEXT);";
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
