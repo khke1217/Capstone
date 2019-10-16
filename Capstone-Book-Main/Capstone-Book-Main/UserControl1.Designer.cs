@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listView1 = new System.Windows.Forms.ListView();
             this.BookNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +46,8 @@
             this.NumberBox = new System.Windows.Forms.TextBox();
             this.SeriesBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ImprintBox = new System.Windows.Forms.TextBox();
@@ -92,8 +95,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ExtractOneButton = new System.Windows.Forms.Button();
+            this.ExtractAllButton = new System.Windows.Forms.Button();
+            this.ExtractButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -165,6 +171,7 @@
             this.CanmodiButton.Size = new System.Drawing.Size(75, 23);
             this.CanmodiButton.TabIndex = 1;
             this.CanmodiButton.Text = "수정";
+            this.toolTip1.SetToolTip(this.CanmodiButton, "메타데이터를 수정 가능한 상태로 전환합니다.");
             this.CanmodiButton.UseVisualStyleBackColor = true;
             this.CanmodiButton.Click += new System.EventHandler(this.CanmodiButton_Click);
             // 
@@ -236,11 +243,26 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.파일ToolStripMenuItem,
+            this.수정ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 파일ToolStripMenuItem
+            // 
+            this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
+            this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.파일ToolStripMenuItem.Text = "파일";
+            // 
+            // 수정ToolStripMenuItem
+            // 
+            this.수정ToolStripMenuItem.Name = "수정ToolStripMenuItem";
+            this.수정ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.수정ToolStripMenuItem.Text = "수정";
             // 
             // panel1
             // 
@@ -475,7 +497,6 @@
             this.EditorBox.ReadOnly = true;
             this.EditorBox.Size = new System.Drawing.Size(80, 21);
             this.EditorBox.TabIndex = 32;
-            this.EditorBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
@@ -504,7 +525,6 @@
             this.CoverArtistBox.ReadOnly = true;
             this.CoverArtistBox.Size = new System.Drawing.Size(80, 21);
             this.CoverArtistBox.TabIndex = 29;
-            this.CoverArtistBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // LettererBox
             // 
@@ -515,7 +535,6 @@
             this.LettererBox.ReadOnly = true;
             this.LettererBox.Size = new System.Drawing.Size(80, 21);
             this.LettererBox.TabIndex = 28;
-            this.LettererBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
@@ -544,7 +563,6 @@
             this.ColoristBox.ReadOnly = true;
             this.ColoristBox.Size = new System.Drawing.Size(80, 21);
             this.ColoristBox.TabIndex = 25;
-            this.ColoristBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // InkerBox
             // 
@@ -555,7 +573,6 @@
             this.InkerBox.ReadOnly = true;
             this.InkerBox.Size = new System.Drawing.Size(80, 21);
             this.InkerBox.TabIndex = 24;
-            this.InkerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
@@ -584,7 +601,6 @@
             this.PencillerBox.ReadOnly = true;
             this.PencillerBox.Size = new System.Drawing.Size(80, 21);
             this.PencillerBox.TabIndex = 21;
-            this.PencillerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // WriterBox
             // 
@@ -595,7 +611,6 @@
             this.WriterBox.ReadOnly = true;
             this.WriterBox.Size = new System.Drawing.Size(80, 21);
             this.WriterBox.TabIndex = 20;
-            this.WriterBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
@@ -775,36 +790,54 @@
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(519, 436);
+            this.StartButton.Location = new System.Drawing.Point(722, 463);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 8;
             this.StartButton.Text = "실행";
             this.StartButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ExtractOneButton
             // 
-            this.button2.Location = new System.Drawing.Point(722, 463);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.UseVisualStyleBackColor = true;
+            this.ExtractOneButton.Location = new System.Drawing.Point(644, 436);
+            this.ExtractOneButton.Name = "ExtractOneButton";
+            this.ExtractOneButton.Size = new System.Drawing.Size(45, 23);
+            this.ExtractOneButton.TabIndex = 9;
+            this.ExtractOneButton.Text = "단일";
+            this.toolTip1.SetToolTip(this.ExtractOneButton, "선택한 파일만 내보냅니다");
+            this.ExtractOneButton.UseVisualStyleBackColor = true;
+            this.ExtractOneButton.Visible = false;
             // 
-            // button1
+            // ExtractAllButton
             // 
-            this.button1.Location = new System.Drawing.Point(641, 463);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "일괄";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ExtractAllButton.Location = new System.Drawing.Point(597, 436);
+            this.ExtractAllButton.Name = "ExtractAllButton";
+            this.ExtractAllButton.Size = new System.Drawing.Size(45, 23);
+            this.ExtractAllButton.TabIndex = 10;
+            this.ExtractAllButton.Text = "일괄";
+            this.ExtractAllButton.UseVisualStyleBackColor = true;
+            this.ExtractAllButton.Visible = false;
+            // 
+            // ExtractButton
+            // 
+            this.ExtractButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ExtractButton.AutoSize = true;
+            this.ExtractButton.Location = new System.Drawing.Point(519, 436);
+            this.ExtractButton.Name = "ExtractButton";
+            this.ExtractButton.Size = new System.Drawing.Size(75, 23);
+            this.ExtractButton.TabIndex = 11;
+            this.ExtractButton.Text = "내보내기";
+            this.toolTip1.SetToolTip(this.ExtractButton, "파일을 메타데이터를 포함한 CBZ 파일로 내보냅니다.");
+            this.ExtractButton.UseVisualStyleBackColor = true;
+            this.ExtractButton.Click += new System.EventHandler(this.ExtractButton_Click);
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ExtractButton);
+            this.Controls.Add(this.ExtractAllButton);
+            this.Controls.Add(this.ExtractOneButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
@@ -813,6 +846,8 @@
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(800, 489);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -888,9 +923,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox ImprintBox;
         private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ExtractOneButton;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox EditorBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ExtractAllButton;
+        private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 수정ToolStripMenuItem;
+        private System.Windows.Forms.Button ExtractButton;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
