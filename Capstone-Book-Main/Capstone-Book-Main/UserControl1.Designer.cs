@@ -99,7 +99,6 @@
             this.ExtractAllButton = new System.Windows.Forms.Button();
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -203,7 +202,7 @@
             // VolumeBox
             // 
             this.VolumeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VolumeBox.Location = new System.Drawing.Point(225, 30);
+            this.VolumeBox.Location = new System.Drawing.Point(341, 30);
             this.VolumeBox.Name = "VolumeBox";
             this.VolumeBox.ReadOnly = true;
             this.VolumeBox.Size = new System.Drawing.Size(24, 21);
@@ -216,7 +215,7 @@
             this.TitleBox.Location = new System.Drawing.Point(56, 3);
             this.TitleBox.Name = "TitleBox";
             this.TitleBox.ReadOnly = true;
-            this.TitleBox.Size = new System.Drawing.Size(193, 21);
+            this.TitleBox.Size = new System.Drawing.Size(309, 21);
             this.TitleBox.TabIndex = 1;
             // 
             // NumberBox
@@ -239,11 +238,12 @@
             this.SeriesBox.Location = new System.Drawing.Point(56, 30);
             this.SeriesBox.Name = "SeriesBox";
             this.SeriesBox.ReadOnly = true;
-            this.SeriesBox.Size = new System.Drawing.Size(163, 21);
+            this.SeriesBox.Size = new System.Drawing.Size(279, 21);
             this.SeriesBox.TabIndex = 2;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -372,7 +372,7 @@
             this.LanguageBox.Location = new System.Drawing.Point(56, 273);
             this.LanguageBox.Name = "LanguageBox";
             this.LanguageBox.ReadOnly = true;
-            this.LanguageBox.Size = new System.Drawing.Size(75, 21);
+            this.LanguageBox.Size = new System.Drawing.Size(191, 21);
             this.LanguageBox.TabIndex = 37;
             // 
             // IsColorButton
@@ -415,7 +415,7 @@
             this.AgeRatingBox.Location = new System.Drawing.Point(67, 246);
             this.AgeRatingBox.Name = "AgeRatingBox";
             this.AgeRatingBox.ReadOnly = true;
-            this.AgeRatingBox.Size = new System.Drawing.Size(182, 21);
+            this.AgeRatingBox.Size = new System.Drawing.Size(298, 21);
             this.AgeRatingBox.TabIndex = 33;
             // 
             // label18
@@ -626,7 +626,7 @@
             this.GenreBox.Location = new System.Drawing.Point(56, 219);
             this.GenreBox.Name = "GenreBox";
             this.GenreBox.ReadOnly = true;
-            this.GenreBox.Size = new System.Drawing.Size(193, 21);
+            this.GenreBox.Size = new System.Drawing.Size(309, 21);
             this.GenreBox.TabIndex = 27;
             // 
             // PublisherBox
@@ -636,7 +636,7 @@
             this.PublisherBox.Location = new System.Drawing.Point(56, 192);
             this.PublisherBox.Name = "PublisherBox";
             this.PublisherBox.ReadOnly = true;
-            this.PublisherBox.Size = new System.Drawing.Size(193, 21);
+            this.PublisherBox.Size = new System.Drawing.Size(309, 21);
             this.PublisherBox.TabIndex = 25;
             // 
             // label7
@@ -716,7 +716,7 @@
             this.SeriesGroupBox.Location = new System.Drawing.Point(79, 138);
             this.SeriesGroupBox.Name = "SeriesGroupBox";
             this.SeriesGroupBox.ReadOnly = true;
-            this.SeriesGroupBox.Size = new System.Drawing.Size(170, 21);
+            this.SeriesGroupBox.Size = new System.Drawing.Size(286, 21);
             this.SeriesGroupBox.TabIndex = 13;
             // 
             // StoryArcBox
@@ -726,7 +726,7 @@
             this.StoryArcBox.Location = new System.Drawing.Point(56, 111);
             this.StoryArcBox.Name = "StoryArcBox";
             this.StoryArcBox.ReadOnly = true;
-            this.StoryArcBox.Size = new System.Drawing.Size(193, 21);
+            this.StoryArcBox.Size = new System.Drawing.Size(309, 21);
             this.StoryArcBox.TabIndex = 12;
             // 
             // AlternateSeriesBox
@@ -736,7 +736,7 @@
             this.AlternateSeriesBox.Location = new System.Drawing.Point(56, 84);
             this.AlternateSeriesBox.Name = "AlternateSeriesBox";
             this.AlternateSeriesBox.ReadOnly = true;
-            this.AlternateSeriesBox.Size = new System.Drawing.Size(193, 21);
+            this.AlternateSeriesBox.Size = new System.Drawing.Size(309, 21);
             this.AlternateSeriesBox.TabIndex = 11;
             // 
             // label4
@@ -844,8 +844,6 @@
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(800, 489);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
