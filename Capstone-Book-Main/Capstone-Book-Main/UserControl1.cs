@@ -17,9 +17,10 @@ namespace Capstone_Book_Main
         public UserControl1()
         {
             InitializeComponent();
-            db_init();
+            DB_init();
             
         }
+
         public class BookMetaString // 제목 등 책 관련 string 변수
         {
             public string title;
@@ -46,7 +47,6 @@ namespace Capstone_Book_Main
             public int page_count;
 
         }
-
         public class MakerMeta // 작가 등 출판관련 string 변수
         {
             public string writer;
@@ -63,7 +63,7 @@ namespace Capstone_Book_Main
 
         bool canmodi = false;
 
-        private void db_init()
+        private void DB_init()
         {
             try
             {
@@ -81,9 +81,9 @@ namespace Capstone_Book_Main
                     "title TEXT, series TEXT, number INT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
                     "alternate_number INT, storyarc TEXT, seriesgroup TEXT, " +
-                    "alternate_count INT, year INT, month INT, day INT, " +
+                    "alternate_count INT, year INT, month INT, DAY INT, " +
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
-                    "letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
+                    "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
                     "age_rating TEXT, blackandwhite TEXT, manga TEXT);";
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
@@ -96,7 +96,7 @@ namespace Capstone_Book_Main
                 MessageBox.Show(ex.Message);
                 return;
             }
-        }
+        } // DB 초기화 (없으면 생성)
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
             if (!canmodi)
