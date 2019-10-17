@@ -91,8 +91,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.StartButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -114,7 +115,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 54);
             this.listView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(949, 836);
+            this.listView1.Size = new System.Drawing.Size(513, 459);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -162,10 +163,9 @@
             // CanmodiButton
             // 
             this.CanmodiButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CanmodiButton.Location = new System.Drawing.Point(1337, 846);
-            this.CanmodiButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.CanmodiButton.Location = new System.Drawing.Point(722, 436);
             this.CanmodiButton.Name = "CanmodiButton";
-            this.CanmodiButton.Size = new System.Drawing.Size(143, 46);
+            this.CanmodiButton.Size = new System.Drawing.Size(75, 23);
             this.CanmodiButton.TabIndex = 1;
             this.CanmodiButton.Text = "수정";
             this.CanmodiButton.UseVisualStyleBackColor = true;
@@ -301,41 +301,37 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.MinimumSize = new System.Drawing.Size(500, 784);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(526, 784);
+            this.panel1.Size = new System.Drawing.Size(283, 401);
             this.panel1.TabIndex = 7;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.ImprintBox);
-            this.groupBox2.Location = new System.Drawing.Point(6, 950);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Location = new System.Drawing.Point(3, 475);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox2.Size = new System.Drawing.Size(487, 120);
+            this.groupBox2.Size = new System.Drawing.Size(262, 60);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "간행정보";
             // 
             // ImprintBox
             // 
-            this.ImprintBox.Location = new System.Drawing.Point(6, 34);
-            this.ImprintBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ImprintBox.Location = new System.Drawing.Point(3, 17);
             this.ImprintBox.Multiline = true;
             this.ImprintBox.Name = "ImprintBox";
             this.ImprintBox.ReadOnly = true;
-            this.ImprintBox.Size = new System.Drawing.Size(472, 76);
+            this.ImprintBox.Size = new System.Drawing.Size(256, 40);
             this.ImprintBox.TabIndex = 0;
             // 
             // label21
             // 
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.Location = new System.Drawing.Point(425, 122);
-            this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label21.MaximumSize = new System.Drawing.Size(32, 24);
-            this.label21.MinimumSize = new System.Drawing.Size(32, 24);
+            this.label21.Location = new System.Drawing.Point(229, 61);
+            this.label21.MaximumSize = new System.Drawing.Size(17, 12);
+            this.label21.MinimumSize = new System.Drawing.Size(17, 12);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(32, 24);
+            this.label21.Size = new System.Drawing.Size(17, 12);
             this.label21.TabIndex = 40;
             this.label21.Text = "쪽";
             // 
@@ -344,15 +340,112 @@
             this.PageCountBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PageCountBox.Location = new System.Drawing.Point(351, 114);
-            this.PageCountBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.PageCountBox.MaximumSize = new System.Drawing.Size(63, 21);
-            this.PageCountBox.MinimumSize = new System.Drawing.Size(63, 21);
+            this.PageCountBox.Location = new System.Drawing.Point(189, 57);
+            this.PageCountBox.MaximumSize = new System.Drawing.Size(36, 21);
+            this.PageCountBox.MinimumSize = new System.Drawing.Size(36, 21);
             this.PageCountBox.Name = "PageCountBox";
             this.PageCountBox.ReadOnly = true;
-            this.PageCountBox.Size = new System.Drawing.Size(63, 21);
+            this.PageCountBox.Size = new System.Drawing.Size(36, 21);
             this.PageCountBox.TabIndex = 39;
             this.PageCountBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 278);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(29, 12);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "언어";
+            // 
+            // LanguageBox
+            // 
+            this.LanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LanguageBox.Location = new System.Drawing.Point(56, 273);
+            this.LanguageBox.Name = "LanguageBox";
+            this.LanguageBox.ReadOnly = true;
+            this.LanguageBox.Size = new System.Drawing.Size(75, 21);
+            this.LanguageBox.TabIndex = 37;
+            // 
+            // IsColorButton
+            // 
+            this.IsColorButton.AutoSize = true;
+            this.IsColorButton.Enabled = false;
+            this.IsColorButton.Location = new System.Drawing.Point(200, 275);
+            this.IsColorButton.Name = "IsColorButton";
+            this.IsColorButton.Size = new System.Drawing.Size(47, 16);
+            this.IsColorButton.TabIndex = 36;
+            this.IsColorButton.TabStop = true;
+            this.IsColorButton.Text = "컬러";
+            this.IsColorButton.UseVisualStyleBackColor = true;
+            // 
+            // IsBlackButton
+            // 
+            this.IsBlackButton.AutoSize = true;
+            this.IsBlackButton.Enabled = false;
+            this.IsBlackButton.Location = new System.Drawing.Point(148, 275);
+            this.IsBlackButton.Name = "IsBlackButton";
+            this.IsBlackButton.Size = new System.Drawing.Size(47, 16);
+            this.IsBlackButton.TabIndex = 35;
+            this.IsBlackButton.TabStop = true;
+            this.IsBlackButton.Text = "흑백";
+            this.IsBlackButton.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(8, 251);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(53, 12);
+            this.label19.TabIndex = 34;
+            this.label19.Text = "심의연령";
+            // 
+            // AgeRatingBox
+            // 
+            this.AgeRatingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AgeRatingBox.Location = new System.Drawing.Point(67, 246);
+            this.AgeRatingBox.Name = "AgeRatingBox";
+            this.AgeRatingBox.ReadOnly = true;
+            this.AgeRatingBox.Size = new System.Drawing.Size(182, 21);
+            this.AgeRatingBox.TabIndex = 33;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 223);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 12);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "장르";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(8, 197);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 12);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "출판사";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 170);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 12);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "발매일";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(9, 143);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 12);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "시리즈그룹";
             // 
             // label20
             // 
@@ -490,10 +583,9 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 266);
-            this.label22.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label22.Location = new System.Drawing.Point(7, 133);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 24);
+            this.label22.Size = new System.Drawing.Size(41, 12);
             this.label22.TabIndex = 33;
             this.label22.Text = "편집자";
             // 
@@ -501,11 +593,10 @@
             // 
             this.EditorBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditorBox.Location = new System.Drawing.Point(95, 256);
-            this.EditorBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EditorBox.Location = new System.Drawing.Point(51, 128);
             this.EditorBox.Name = "EditorBox";
             this.EditorBox.ReadOnly = true;
-            this.EditorBox.Size = new System.Drawing.Size(145, 35);
+            this.EditorBox.Size = new System.Drawing.Size(80, 21);
             this.EditorBox.TabIndex = 32;
             this.EditorBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -644,10 +735,9 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(37, 232);
-            this.label14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label14.Location = new System.Drawing.Point(20, 116);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 24);
+            this.label14.Size = new System.Drawing.Size(29, 12);
             this.label14.TabIndex = 28;
             this.label14.Text = "원작";
             // 
@@ -655,22 +745,20 @@
             // 
             this.GenreBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GenreBox.Location = new System.Drawing.Point(104, 438);
-            this.GenreBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.GenreBox.Location = new System.Drawing.Point(56, 219);
             this.GenreBox.Name = "GenreBox";
             this.GenreBox.ReadOnly = true;
-            this.GenreBox.Size = new System.Drawing.Size(570, 35);
+            this.GenreBox.Size = new System.Drawing.Size(193, 21);
             this.GenreBox.TabIndex = 27;
             // 
             // PublisherBox
             // 
             this.PublisherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PublisherBox.Location = new System.Drawing.Point(104, 384);
-            this.PublisherBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PublisherBox.Location = new System.Drawing.Point(56, 192);
             this.PublisherBox.Name = "PublisherBox";
             this.PublisherBox.ReadOnly = true;
-            this.PublisherBox.Size = new System.Drawing.Size(570, 35);
+            this.PublisherBox.Size = new System.Drawing.Size(193, 21);
             this.PublisherBox.TabIndex = 25;
             // 
             // label7
@@ -833,32 +921,39 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "전체";
             // 
-            // button1
+            // StartButton
             // 
-            this.button1.Location = new System.Drawing.Point(1036, 846);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 46);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "실행";
-            this.button1.UseVisualStyleBackColor = true;
+            this.StartButton.Location = new System.Drawing.Point(519, 436);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(75, 23);
+            this.StartButton.TabIndex = 8;
+            this.StartButton.Text = "실행";
+            this.StartButton.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1187, 846);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Location = new System.Drawing.Point(722, 463);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 46);
             this.button2.TabIndex = 9;
-            this.button2.Text = "내보내기";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(641, 463);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "일괄";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.StartButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.CanmodiButton);
@@ -866,7 +961,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.MinimumSize = new System.Drawing.Size(1486, 900);
             this.Name = "UserControl1";
-            this.Size = new System.Drawing.Size(1486, 900);
+            this.Size = new System.Drawing.Size(800, 489);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -941,9 +1036,10 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox ImprintBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox EditorBox;
+        private System.Windows.Forms.Button button1;
     }
 }
