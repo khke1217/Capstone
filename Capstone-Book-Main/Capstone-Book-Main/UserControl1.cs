@@ -102,6 +102,7 @@ namespace Capstone_Book_Main
             if (!canmodi)
             {
                 CanmodiButton.Text = "저장";
+                this.toolTip1.SetToolTip(this.CanmodiButton, "수정한 메타데이터를 저장합니다.");
                 TitleBox.ReadOnly = false;
                 SeriesBox.ReadOnly = false;
                 NumberBox.ReadOnly = false;
@@ -133,6 +134,7 @@ namespace Capstone_Book_Main
             else
             {
                 CanmodiButton.Text = "수정";
+                this.toolTip1.SetToolTip(this.CanmodiButton, "메타데이터를 수정 가능한 상태로 전환합니다.");
                 TitleBox.ReadOnly = true;
                 SeriesBox.ReadOnly = true;
                 NumberBox.ReadOnly = true;
@@ -165,7 +167,12 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        
+        private void ExtractButton_Click(object sender, EventArgs e)
+        {
+            ExtractAllButton.Visible = !ExtractAllButton.Visible;
+            ExtractOneButton.Visible = !ExtractOneButton.Visible;
+        }
+
     }
 
 }
