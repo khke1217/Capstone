@@ -8,49 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.IO;
+
 
 namespace Capstone_Book_Main
 {
-    public partial class UserControl1: UserControl
+    public partial class UserControl1 : UserControl
     {
-        string DBroute = "MyDB.sqlite";
-        public UserControl1()
-        {
-            InitializeComponent();
-            DB_init();
-            
-        }
+        string dbroute = "MyDB.sqlite";
+        string file_path = "c:\\Cpst_Test";
 
-        public class BookMetaString // 제목 등 책 관련 string 변수
+        public class StringMeta
         {
             public string title;
             public string series;
             public string alternate_series;
             public string storyarc;
             public string seriesgroup;
-            public string language;
             public List<string> genre;
+            public string language;
             public string format;
             public string age_rating;
             public string blackandwhite;
             public string manga;
         }
-        public class BookMetaInt // 페이지 등 책관련 int 변수
+        public class IntMeta
         {
             public int number;
             public int count;
             public int volume;
+            public int alternate_number;
             public int alternate_count;
             public int year;
             public int month;
             public int day;
             public int page_count;
-
         }
-        public class MakerMeta // 작가 등 출판관련 string 변수
+        public class MakerMeta
         {
             public string writer;
-            public string penciler;
+            public string penciller;
             public string inker;
             public string colorist;
             public string letterer;
@@ -60,16 +57,23 @@ namespace Capstone_Book_Main
             public string imprint;
 
         }
+        public UserControl1()
+        {
+            InitializeComponent();
+            Db_init();
+            Db_regist(file_path);
+            
+        }
 
         bool canmodi = false;
 
-        private void DB_init()
+        private void Db_init()
         {
             try
             {
-                if (!System.IO.File.Exists(DBroute))
+                if (!System.IO.File.Exists(dbroute))
                 {
-                    SQLiteConnection.CreateFile(DBroute);
+                    SQLiteConnection.CreateFile(dbroute);
                 }
                 // 테이블 생성
 
@@ -96,7 +100,7 @@ namespace Capstone_Book_Main
                 MessageBox.Show(ex.Message);
                 return;
             }
-        } // DB 초기화 (없으면 생성)
+        }
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
             if (!canmodi)
@@ -166,6 +170,23 @@ namespace Capstone_Book_Main
 
             canmodi = !canmodi;
         }
+
+        /*private void Db_regist(string file_path) // 파일을 DB에 등록
+        {
+            int i = 0;
+            foreach (String file in Directory.GetFiles(file_path))
+            {
+                switch (Path.GetExtension(file))
+                {
+                    case ".cbz":
+                    case ".cbr":
+                    case ".zip":
+                    case ".txt":
+                    case ".pdf":
+                        ListViewItem item = new ListViewItem();
+                }
+            }
+        }*/
 
         private void ExtractButton_Click(object sender, EventArgs e)
         {
