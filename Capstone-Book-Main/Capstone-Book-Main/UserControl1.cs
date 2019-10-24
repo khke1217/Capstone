@@ -16,7 +16,7 @@ namespace Capstone_Book_Main
     public partial class UserControl1 : UserControl
     {
         string dbroute = "MyDB.sqlite";
-        string file_path = "c:\\Cpst_Test";
+        string file_path = @"c:\Cpst_Test";
 
         public class StringMeta
         {
@@ -81,7 +81,7 @@ namespace Capstone_Book_Main
                 m_dbConnection.Open();
 
 
-                string sql = "CREATE TABLE IF NOT EXISTS R_BOOK (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                string sql = "CREATE TABLE IF NOT EXISTS R_BOOK (id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT unique," +
                     "title TEXT, series TEXT, number INT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
                     "alternate_number INT, storyarc TEXT, seriesgroup TEXT, " +
@@ -90,6 +90,7 @@ namespace Capstone_Book_Main
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
                     "age_rating TEXT, blackandwhite TEXT, manga TEXT);";
+              
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
 
@@ -171,9 +172,15 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        /*private void Db_regist(string file_path) // 파일을 DB에 등록
+        private void Db_regist(string file_path) // 파일을 DB에 등록
         {
             int i = 0;
+            string file_name = "";
+            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+            
+
+            conn.Open();
+
             foreach (String file in Directory.GetFiles(file_path))
             {
                 switch (Path.GetExtension(file))
@@ -181,12 +188,19 @@ namespace Capstone_Book_Main
                     case ".cbz":
                     case ".cbr":
                     case ".zip":
-                    case ".txt":
-                    case ".pdf":
-                        ListViewItem item = new ListViewItem();
+                        i++;
+                        file_name = Path.GetFileName(file);
+                        string sql = "insert or ignore into R_BOOK (file_name) values ('"+Path.GetFileName(file)+"');";
+                        SQLiteCommand command = new SQLiteCommand(sql, conn);
+                        command.ExecuteNonQuery();
+                        break;
+                    default:
+                        break;
                 }
+            
             }
-        }*/
+            conn.Close();
+        }
 
         private void ExtractButton_Click(object sender, EventArgs e)
         {
