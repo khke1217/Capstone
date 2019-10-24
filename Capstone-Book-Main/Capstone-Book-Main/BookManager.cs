@@ -19,6 +19,7 @@ namespace Capstone_Book_Main
         //string file_path = @"c:\Cpst_Test";
         Config configDialog = new Config();
 
+
         public class StringMeta
         {
             public string title;
@@ -62,7 +63,12 @@ namespace Capstone_Book_Main
         {
             InitializeComponent();
             Db_init();
-            Db_regist();
+
+            FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
+            dialog.ShowDialog();
+            string file_path = dialog.SelectedPath;
+
+            Db_regist(file_path);
             
         }
 
@@ -173,29 +179,24 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        private void Db_regist() // 파일을 DB에 등록
+        private void Db_regist(string file_path) // 파일을 DB에 등록
         {
             
-            int i = 0;
-            string file_name = "";
             SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
 
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.ShowDialog();
-            string file_path = dialog.SelectedPath;
+            string[] dirs = Directory.GetDirectories(file_path);
+            string[] files = Directory.GetFiles(file_path);
 
-            
             conn.Open();
 
-            foreach (String file in Directory.GetFiles(file_path))
+            foreach (String file in files)
             {
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
                     case ".cbr":
+                    case ".pdf":
                     case ".zip":
-                        i++;
-                        file_name = Path.GetFileName(file);
                         string sql = "insert or ignore into R_BOOK (file_name) values ('"+Path.GetFileName(file)+"');";
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
                         command.ExecuteNonQuery();
@@ -204,6 +205,13 @@ namespace Capstone_Book_Main
                         break;
                 }
             
+            }
+            if (dirs.Length > 0)
+            {
+                foreach(string dir in dirs)
+                {
+                    Db_regist(dir);
+                }
             }
             conn.Close();
         }
