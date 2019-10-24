@@ -13,10 +13,11 @@ using System.IO;
 
 namespace Capstone_Book_Main
 {
-    public partial class UserControl1 : UserControl
+    public partial class BookManager : UserControl
     {
         string dbroute = "MyDB.sqlite";
-        string file_path = @"c:\Cpst_Test";
+        //string file_path = @"c:\Cpst_Test";
+        Config configDialog = new Config();
 
         public class StringMeta
         {
@@ -57,11 +58,11 @@ namespace Capstone_Book_Main
             public string imprint;
 
         }
-        public UserControl1()
+        public BookManager()
         {
             InitializeComponent();
             Db_init();
-            Db_regist(file_path);
+            Db_regist();
             
         }
 
@@ -172,13 +173,18 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        private void Db_regist(string file_path) // 파일을 DB에 등록
+        private void Db_regist() // 파일을 DB에 등록
         {
+            
             int i = 0;
             string file_name = "";
             SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
-            
 
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowDialog();
+            string file_path = dialog.SelectedPath;
+
+            
             conn.Open();
 
             foreach (String file in Directory.GetFiles(file_path))
@@ -208,6 +214,10 @@ namespace Capstone_Book_Main
             ExtractOneButton.Visible = !ExtractOneButton.Visible;
         }
 
+        private void 옵션ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            configDialog.ShowDialog();
+        }
     }
 
 }
