@@ -75,11 +75,15 @@ namespace Capstone_Book_Main
             {
                 MessageBox.Show("DB 파일이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //이부분까지 지울것
-                Db_init();
+
+                Db_init(); // DB 생성/초기화
+
                 FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
                 dialog.ShowDialog();
                 file_path = dialog.SelectedPath;
-                Db_regist(file_path);
+
+                Db_regist(file_path); // DB에 파일 등록
+
             }
         }
 
@@ -118,6 +122,62 @@ namespace Capstone_Book_Main
             {
                 MessageBox.Show(ex.Message);
                 return;
+            }
+        }
+
+        private void Db_regist(string file_path) // 파일을 DB에 등록
+        {
+
+            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+
+            string[] dirs = Directory.GetDirectories(file_path);
+            string[] files = Directory.GetFiles(file_path);
+
+            conn.Open();
+
+            foreach (String file in files)
+            {
+                switch (Path.GetExtension(file))
+                {
+                    case ".cbz":
+                    case ".cbr":
+                    case ".zip":
+                        string sql = "insert or ignore into R_BOOK (file_name) values ('" + Path.GetFileName(file) + "');";
+                        SQLiteCommand command = new SQLiteCommand(sql, conn);
+                        command.ExecuteNonQuery();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+            if (dirs.Length > 0)
+            {
+                foreach (string dir in dirs)
+                {
+                    Db_regist(dir);
+                }
+            }
+            conn.Close();
+
+            using (StreamWriter ConfigOut = new StreamWriter(@"Config.dat"))
+            {
+                ConfigOut.WriteLine("dbrout = " + dbroute);
+            }
+        }
+
+        private void Db_view()
+        {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+
+            conn.Open();
+            string sql = "SELECT * FROM R_BOOK;";
+
+            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteDataReader rdr = cmd.ExecuteReader();
+            while ( rdr.Read())
+            {
+                
             }
         }
         private void CanmodiButton_Click(object sender, EventArgs e)
@@ -190,46 +250,7 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        private void Db_regist(string file_path) // 파일을 DB에 등록
-        {
-
-            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
-
-            string[] dirs = Directory.GetDirectories(file_path);
-            string[] files = Directory.GetFiles(file_path);
-
-            conn.Open();
-
-            foreach (String file in files)
-            {
-                switch (Path.GetExtension(file))
-                {
-                    case ".cbz":
-                    case ".cbr":
-                    case ".zip":
-                        string sql = "insert or ignore into R_BOOK (file_name) values ('" + Path.GetFileName(file) + "');";
-                        SQLiteCommand command = new SQLiteCommand(sql, conn);
-                        command.ExecuteNonQuery();
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-            if (dirs.Length > 0)
-            {
-                foreach (string dir in dirs)
-                {
-                    Db_regist(dir);
-                }
-            }
-            conn.Close();
-
-            using (StreamWriter ConfigOut = new StreamWriter(@"Config.dat"))
-            {
-                ConfigOut.WriteLine("dbrout = " + dbroute);
-            }
-        }
+        
 
         private void ExtractButton_Click(object sender, EventArgs e)
         {
@@ -240,6 +261,11 @@ namespace Capstone_Book_Main
         private void 옵션ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             configDialog.ShowDialog();
+        }
+
+        private void BookManager_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

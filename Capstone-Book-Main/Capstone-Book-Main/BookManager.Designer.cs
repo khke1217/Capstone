@@ -48,7 +48,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.도구ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.옵션ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.BookNumberBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ImprintBox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -99,11 +104,7 @@
             this.ExtractAllButton = new System.Windows.Forms.Button();
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.BookNumberBox = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.도구ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.옵션ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileNameHd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -112,7 +113,7 @@
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.BookNum,
@@ -121,7 +122,9 @@
             this.Writer,
             this.Penciller,
             this.Genre,
-            this.AgeRating});
+            this.AgeRating,
+            this.FileNameHd});
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 27);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(513, 459);
@@ -159,7 +162,7 @@
             // 
             // SeriesLable
             // 
-            this.SeriesLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SeriesLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SeriesLable.AutoSize = true;
             this.SeriesLable.Location = new System.Drawing.Point(9, 61);
@@ -182,7 +185,7 @@
             // 
             // CountBox
             // 
-            this.CountBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CountBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CountBox.Location = new System.Drawing.Point(131, 84);
             this.CountBox.MaximumSize = new System.Drawing.Size(36, 21);
@@ -195,7 +198,7 @@
             // 
             // TitleLable
             // 
-            this.TitleLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TitleLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleLable.AutoSize = true;
             this.TitleLable.Location = new System.Drawing.Point(20, 8);
@@ -215,7 +218,7 @@
             // 
             // TitleBox
             // 
-            this.TitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleBox.Location = new System.Drawing.Point(56, 3);
             this.TitleBox.Name = "TitleBox";
@@ -225,7 +228,7 @@
             // 
             // NumberBox
             // 
-            this.NumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.NumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberBox.Location = new System.Drawing.Point(56, 84);
             this.NumberBox.MaximumSize = new System.Drawing.Size(41, 21);
@@ -238,7 +241,7 @@
             // 
             // SeriesBox
             // 
-            this.SeriesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SeriesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SeriesBox.Location = new System.Drawing.Point(56, 57);
             this.SeriesBox.Name = "SeriesBox";
@@ -270,10 +273,32 @@
             this.수정ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.수정ToolStripMenuItem.Text = "수정";
             // 
+            // 도구ToolStripMenuItem
+            // 
+            this.도구ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.도움말ToolStripMenuItem,
+            this.옵션ToolStripMenuItem});
+            this.도구ToolStripMenuItem.Name = "도구ToolStripMenuItem";
+            this.도구ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.도구ToolStripMenuItem.Text = "도구";
+            // 
+            // 도움말ToolStripMenuItem
+            // 
+            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
+            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.도움말ToolStripMenuItem.Text = "도움말";
+            // 
+            // 옵션ToolStripMenuItem
+            // 
+            this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
+            this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.옵션ToolStripMenuItem.Text = "옵션";
+            this.옵션ToolStripMenuItem.Click += new System.EventHandler(this.옵션ToolStripMenuItem_Click);
+            // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.label23);
@@ -321,6 +346,27 @@
             this.panel1.Size = new System.Drawing.Size(283, 401);
             this.panel1.TabIndex = 7;
             // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(10, 33);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(53, 12);
+            this.label23.TabIndex = 42;
+            this.label23.Text = "도서번호";
+            // 
+            // BookNumberBox
+            // 
+            this.BookNumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BookNumberBox.Location = new System.Drawing.Point(67, 30);
+            this.BookNumberBox.Name = "BookNumberBox";
+            this.BookNumberBox.ReadOnly = true;
+            this.BookNumberBox.Size = new System.Drawing.Size(182, 21);
+            this.BookNumberBox.TabIndex = 41;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.ImprintBox);
@@ -342,7 +388,7 @@
             // 
             // label21
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label21.Location = new System.Drawing.Point(229, 88);
             this.label21.MaximumSize = new System.Drawing.Size(17, 12);
@@ -354,8 +400,8 @@
             // 
             // PageCountBox
             // 
-            this.PageCountBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.PageCountBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PageCountBox.Location = new System.Drawing.Point(189, 84);
             this.PageCountBox.MaximumSize = new System.Drawing.Size(36, 21);
@@ -377,7 +423,7 @@
             // 
             // LanguageBox
             // 
-            this.LanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LanguageBox.Location = new System.Drawing.Point(56, 300);
             this.LanguageBox.Name = "LanguageBox";
@@ -420,7 +466,7 @@
             // 
             // AgeRatingBox
             // 
-            this.AgeRatingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.AgeRatingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AgeRatingBox.Location = new System.Drawing.Point(67, 273);
             this.AgeRatingBox.Name = "AgeRatingBox";
@@ -498,7 +544,7 @@
             // 
             // EditorBox
             // 
-            this.EditorBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.EditorBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditorBox.Location = new System.Drawing.Point(51, 128);
             this.EditorBox.Name = "EditorBox";
@@ -526,7 +572,7 @@
             // 
             // CoverArtistBox
             // 
-            this.CoverArtistBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.CoverArtistBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CoverArtistBox.Location = new System.Drawing.Point(95, 101);
             this.CoverArtistBox.Name = "CoverArtistBox";
@@ -536,7 +582,7 @@
             // 
             // LettererBox
             // 
-            this.LettererBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.LettererBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LettererBox.Location = new System.Drawing.Point(179, 48);
             this.LettererBox.Name = "LettererBox";
@@ -564,7 +610,7 @@
             // 
             // ColoristBox
             // 
-            this.ColoristBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.ColoristBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ColoristBox.Location = new System.Drawing.Point(76, 74);
             this.ColoristBox.Name = "ColoristBox";
@@ -574,7 +620,7 @@
             // 
             // InkerBox
             // 
-            this.InkerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.InkerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InkerBox.Location = new System.Drawing.Point(47, 47);
             this.InkerBox.Name = "InkerBox";
@@ -602,7 +648,7 @@
             // 
             // PencillerBox
             // 
-            this.PencillerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PencillerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PencillerBox.Location = new System.Drawing.Point(179, 20);
             this.PencillerBox.Name = "PencillerBox";
@@ -612,7 +658,7 @@
             // 
             // WriterBox
             // 
-            this.WriterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.WriterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WriterBox.Location = new System.Drawing.Point(47, 20);
             this.WriterBox.Name = "WriterBox";
@@ -631,7 +677,7 @@
             // 
             // GenreBox
             // 
-            this.GenreBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.GenreBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GenreBox.Location = new System.Drawing.Point(56, 246);
             this.GenreBox.Name = "GenreBox";
@@ -641,7 +687,7 @@
             // 
             // PublisherBox
             // 
-            this.PublisherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.PublisherBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PublisherBox.Location = new System.Drawing.Point(56, 219);
             this.PublisherBox.Name = "PublisherBox";
@@ -684,7 +730,7 @@
             // 
             // DayBox
             // 
-            this.DayBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.DayBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DayBox.Location = new System.Drawing.Point(195, 192);
             this.DayBox.MaximumSize = new System.Drawing.Size(36, 21);
@@ -708,7 +754,7 @@
             // 
             // YearBox
             // 
-            this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.YearBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.YearBox.Location = new System.Drawing.Point(56, 192);
             this.YearBox.MaximumSize = new System.Drawing.Size(59, 21);
@@ -721,7 +767,7 @@
             // 
             // SeriesGroupBox
             // 
-            this.SeriesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.SeriesGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SeriesGroupBox.Location = new System.Drawing.Point(79, 165);
             this.SeriesGroupBox.Name = "SeriesGroupBox";
@@ -731,7 +777,7 @@
             // 
             // StoryArcBox
             // 
-            this.StoryArcBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.StoryArcBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StoryArcBox.Location = new System.Drawing.Point(56, 138);
             this.StoryArcBox.Name = "StoryArcBox";
@@ -741,7 +787,7 @@
             // 
             // AlternateSeriesBox
             // 
-            this.AlternateSeriesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.AlternateSeriesBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AlternateSeriesBox.Location = new System.Drawing.Point(56, 111);
             this.AlternateSeriesBox.Name = "AlternateSeriesBox";
@@ -760,7 +806,7 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Location = new System.Drawing.Point(167, 89);
             this.label3.MaximumSize = new System.Drawing.Size(17, 12);
@@ -772,7 +818,7 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(97, 89);
@@ -785,7 +831,7 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(21, 88);
@@ -839,50 +885,11 @@
             this.ExtractButton.UseVisualStyleBackColor = true;
             this.ExtractButton.Click += new System.EventHandler(this.ExtractButton_Click);
             // 
-            // BookNumberBox
+            // FileNameHd
             // 
-            this.BookNumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BookNumberBox.Location = new System.Drawing.Point(67, 30);
-            this.BookNumberBox.Name = "BookNumberBox";
-            this.BookNumberBox.ReadOnly = true;
-            this.BookNumberBox.Size = new System.Drawing.Size(182, 21);
-            this.BookNumberBox.TabIndex = 41;
+            this.FileNameHd.Text = "파일";
             // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(10, 33);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(53, 12);
-            this.label23.TabIndex = 42;
-            this.label23.Text = "도서번호";
-            // 
-            // 도구ToolStripMenuItem
-            // 
-            this.도구ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.도움말ToolStripMenuItem,
-            this.옵션ToolStripMenuItem});
-            this.도구ToolStripMenuItem.Name = "도구ToolStripMenuItem";
-            this.도구ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.도구ToolStripMenuItem.Text = "도구";
-            // 
-            // 도움말ToolStripMenuItem
-            // 
-            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
-            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.도움말ToolStripMenuItem.Text = "도움말";
-            // 
-            // 옵션ToolStripMenuItem
-            // 
-            this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
-            this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.옵션ToolStripMenuItem.Text = "옵션";
-            this.옵션ToolStripMenuItem.Click += new System.EventHandler(this.옵션ToolStripMenuItem_Click);
-            // 
-            // UserControl1
+            // BookManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -895,8 +902,9 @@
             this.Controls.Add(this.CanmodiButton);
             this.Controls.Add(this.menuStrip1);
             this.MinimumSize = new System.Drawing.Size(800, 450);
-            this.Name = "UserControl1";
+            this.Name = "BookManager";
             this.Size = new System.Drawing.Size(800, 489);
+            this.Load += new System.EventHandler(this.BookManager_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -987,5 +995,6 @@
         private System.Windows.Forms.ToolStripMenuItem 도구ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 옵션ToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader FileNameHd;
     }
 }
