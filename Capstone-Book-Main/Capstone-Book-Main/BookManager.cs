@@ -16,7 +16,7 @@ namespace Capstone_Book_Main
     public partial class BookManager : UserControl
     {
         string dbroute = "MyDB.sqlite";
-        //string file_path = @"c:\Cpst_Test";
+        string file_path = "";
         Config configDialog = new Config();
 
 
@@ -59,17 +59,28 @@ namespace Capstone_Book_Main
             public string imprint;
 
         }
+
         public BookManager()
         {
             InitializeComponent();
-            Db_init();
 
-            FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
-            dialog.ShowDialog();
-            string file_path = dialog.SelectedPath;
+            //이부분부터 지울것
+            FileInfo fileInfo = new FileInfo(dbroute);
 
-            Db_regist(file_path);
-            
+            if (fileInfo.Exists)
+            {
+                MessageBox.Show("DB 파일이 있습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("DB 파일이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //이부분까지 지울것
+                Db_init();
+                FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
+                dialog.ShowDialog();
+                file_path = dialog.SelectedPath;
+                Db_regist(file_path);
+            }
         }
 
         bool canmodi = false;
@@ -97,7 +108,7 @@ namespace Capstone_Book_Main
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
                     "age_rating TEXT, blackandwhite TEXT, manga TEXT);";
-              
+
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
 
@@ -181,7 +192,7 @@ namespace Capstone_Book_Main
 
         private void Db_regist(string file_path) // 파일을 DB에 등록
         {
-            
+
             SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
 
             string[] dirs = Directory.GetDirectories(file_path);
@@ -195,25 +206,29 @@ namespace Capstone_Book_Main
                 {
                     case ".cbz":
                     case ".cbr":
-                    case ".pdf":
                     case ".zip":
-                        string sql = "insert or ignore into R_BOOK (file_name) values ('"+Path.GetFileName(file)+"');";
+                        string sql = "insert or ignore into R_BOOK (file_name) values ('" + Path.GetFileName(file) + "');";
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
                         command.ExecuteNonQuery();
                         break;
                     default:
                         break;
                 }
-            
+
             }
             if (dirs.Length > 0)
             {
-                foreach(string dir in dirs)
+                foreach (string dir in dirs)
                 {
                     Db_regist(dir);
                 }
             }
             conn.Close();
+
+            using (StreamWriter ConfigOut = new StreamWriter(@"Config.dat"))
+            {
+                ConfigOut.WriteLine("dbrout = " + dbroute);
+            }
         }
 
         private void ExtractButton_Click(object sender, EventArgs e)
