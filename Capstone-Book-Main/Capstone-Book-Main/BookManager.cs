@@ -83,7 +83,7 @@ namespace Capstone_Book_Main
                 file_path = dialog.SelectedPath;
 
                 Db_regist(file_path); // DB에 파일 등록
-
+                Db_view();
             }
         }
 
@@ -177,8 +177,19 @@ namespace Capstone_Book_Main
             SQLiteDataReader rdr = cmd.ExecuteReader();
             while ( rdr.Read())
             {
-                
+                ListViewItem item = new ListViewItem();
+                item.Text = rdr["number"].ToString();
+                item.SubItems.Add(rdr["title"].ToString());
+                item.SubItems.Add(rdr["series"].ToString());
+                item.SubItems.Add(rdr["writer"].ToString());
+                item.SubItems.Add(rdr["penciller"].ToString());
+                item.SubItems.Add(rdr["genre"].ToString());
+                item.SubItems.Add(rdr["age_rating"].ToString());
+                item.SubItems.Add(rdr["file_name"].ToString());
+                listView1.Items.Add(item);
             }
+            rdr.Close();
+            conn.Close();
         }
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
