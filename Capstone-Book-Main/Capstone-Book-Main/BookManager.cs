@@ -70,6 +70,7 @@ namespace Capstone_Book_Main
             if (fileInfo.Exists)
             {
                 MessageBox.Show("DB 파일이 있습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Db_view();
             }
             else
             {
@@ -275,6 +276,11 @@ namespace Capstone_Book_Main
         }
 
         private void BookManager_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

@@ -37,6 +37,7 @@
             this.Penciller = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AgeRating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FileNameHd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SeriesLable = new System.Windows.Forms.Label();
             this.CanmodiButton = new System.Windows.Forms.Button();
             this.CountBox = new System.Windows.Forms.TextBox();
@@ -104,7 +105,6 @@
             this.ExtractAllButton = new System.Windows.Forms.Button();
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.FileNameHd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,6 +113,8 @@
             // 
             // listView1
             // 
+            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView1.AllowColumnReorder = true;
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -125,7 +127,8 @@
             this.AgeRating,
             this.FileNameHd});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 27);
+            this.listView1.Location = new System.Drawing.Point(0, 30);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(513, 459);
             this.listView1.TabIndex = 0;
@@ -159,6 +162,10 @@
             // AgeRating
             // 
             this.AgeRating.Text = "심의연령";
+            // 
+            // FileNameHd
+            // 
+            this.FileNameHd.Text = "파일";
             // 
             // SeriesLable
             // 
@@ -210,7 +217,7 @@
             // VolumeBox
             // 
             this.VolumeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.VolumeBox.Location = new System.Drawing.Point(225, 57);
+            this.VolumeBox.Location = new System.Drawing.Point(341, 57);
             this.VolumeBox.Name = "VolumeBox";
             this.VolumeBox.ReadOnly = true;
             this.VolumeBox.Size = new System.Drawing.Size(24, 21);
@@ -223,7 +230,7 @@
             this.TitleBox.Location = new System.Drawing.Point(56, 3);
             this.TitleBox.Name = "TitleBox";
             this.TitleBox.ReadOnly = true;
-            this.TitleBox.Size = new System.Drawing.Size(193, 21);
+            this.TitleBox.Size = new System.Drawing.Size(309, 21);
             this.TitleBox.TabIndex = 1;
             // 
             // NumberBox
@@ -246,11 +253,12 @@
             this.SeriesBox.Location = new System.Drawing.Point(56, 57);
             this.SeriesBox.Name = "SeriesBox";
             this.SeriesBox.ReadOnly = true;
-            this.SeriesBox.Size = new System.Drawing.Size(163, 21);
+            this.SeriesBox.Size = new System.Drawing.Size(279, 21);
             this.SeriesBox.TabIndex = 2;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.파일ToolStripMenuItem,
             this.수정ToolStripMenuItem,
@@ -260,6 +268,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // 파일ToolStripMenuItem
             // 
@@ -364,7 +373,7 @@
             this.BookNumberBox.Location = new System.Drawing.Point(67, 30);
             this.BookNumberBox.Name = "BookNumberBox";
             this.BookNumberBox.ReadOnly = true;
-            this.BookNumberBox.Size = new System.Drawing.Size(182, 21);
+            this.BookNumberBox.Size = new System.Drawing.Size(298, 21);
             this.BookNumberBox.TabIndex = 41;
             // 
             // groupBox2
@@ -428,7 +437,7 @@
             this.LanguageBox.Location = new System.Drawing.Point(56, 300);
             this.LanguageBox.Name = "LanguageBox";
             this.LanguageBox.ReadOnly = true;
-            this.LanguageBox.Size = new System.Drawing.Size(75, 21);
+            this.LanguageBox.Size = new System.Drawing.Size(191, 21);
             this.LanguageBox.TabIndex = 37;
             // 
             // IsColorButton
@@ -471,7 +480,7 @@
             this.AgeRatingBox.Location = new System.Drawing.Point(67, 273);
             this.AgeRatingBox.Name = "AgeRatingBox";
             this.AgeRatingBox.ReadOnly = true;
-            this.AgeRatingBox.Size = new System.Drawing.Size(182, 21);
+            this.AgeRatingBox.Size = new System.Drawing.Size(298, 21);
             this.AgeRatingBox.TabIndex = 33;
             // 
             // label18
@@ -682,7 +691,7 @@
             this.GenreBox.Location = new System.Drawing.Point(56, 246);
             this.GenreBox.Name = "GenreBox";
             this.GenreBox.ReadOnly = true;
-            this.GenreBox.Size = new System.Drawing.Size(193, 21);
+            this.GenreBox.Size = new System.Drawing.Size(309, 21);
             this.GenreBox.TabIndex = 27;
             // 
             // PublisherBox
@@ -692,7 +701,7 @@
             this.PublisherBox.Location = new System.Drawing.Point(56, 219);
             this.PublisherBox.Name = "PublisherBox";
             this.PublisherBox.ReadOnly = true;
-            this.PublisherBox.Size = new System.Drawing.Size(193, 21);
+            this.PublisherBox.Size = new System.Drawing.Size(309, 21);
             this.PublisherBox.TabIndex = 25;
             // 
             // label7
@@ -772,7 +781,7 @@
             this.SeriesGroupBox.Location = new System.Drawing.Point(79, 165);
             this.SeriesGroupBox.Name = "SeriesGroupBox";
             this.SeriesGroupBox.ReadOnly = true;
-            this.SeriesGroupBox.Size = new System.Drawing.Size(170, 21);
+            this.SeriesGroupBox.Size = new System.Drawing.Size(286, 21);
             this.SeriesGroupBox.TabIndex = 13;
             // 
             // StoryArcBox
@@ -782,7 +791,7 @@
             this.StoryArcBox.Location = new System.Drawing.Point(56, 138);
             this.StoryArcBox.Name = "StoryArcBox";
             this.StoryArcBox.ReadOnly = true;
-            this.StoryArcBox.Size = new System.Drawing.Size(193, 21);
+            this.StoryArcBox.Size = new System.Drawing.Size(309, 21);
             this.StoryArcBox.TabIndex = 12;
             // 
             // AlternateSeriesBox
@@ -792,7 +801,7 @@
             this.AlternateSeriesBox.Location = new System.Drawing.Point(56, 111);
             this.AlternateSeriesBox.Name = "AlternateSeriesBox";
             this.AlternateSeriesBox.ReadOnly = true;
-            this.AlternateSeriesBox.Size = new System.Drawing.Size(193, 21);
+            this.AlternateSeriesBox.Size = new System.Drawing.Size(309, 21);
             this.AlternateSeriesBox.TabIndex = 11;
             // 
             // label4
@@ -884,10 +893,6 @@
             this.toolTip1.SetToolTip(this.ExtractButton, "파일을 메타데이터를 포함한 CBZ 파일로 내보냅니다.");
             this.ExtractButton.UseVisualStyleBackColor = true;
             this.ExtractButton.Click += new System.EventHandler(this.ExtractButton_Click);
-            // 
-            // FileNameHd
-            // 
-            this.FileNameHd.Text = "파일";
             // 
             // BookManager
             // 
