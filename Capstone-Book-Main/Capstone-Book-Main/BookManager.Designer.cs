@@ -126,6 +126,7 @@
             this.Genre,
             this.AgeRating,
             this.FileNameHd});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 30);
             this.listView1.MultiSelect = false;
@@ -134,6 +135,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // BookNum
             // 
@@ -230,7 +232,7 @@
             this.TitleBox.Location = new System.Drawing.Point(56, 3);
             this.TitleBox.Name = "TitleBox";
             this.TitleBox.ReadOnly = true;
-            this.TitleBox.Size = new System.Drawing.Size(309, 21);
+            this.TitleBox.Size = new System.Drawing.Size(195, 21);
             this.TitleBox.TabIndex = 1;
             // 
             // NumberBox
@@ -253,7 +255,7 @@
             this.SeriesBox.Location = new System.Drawing.Point(56, 57);
             this.SeriesBox.Name = "SeriesBox";
             this.SeriesBox.ReadOnly = true;
-            this.SeriesBox.Size = new System.Drawing.Size(279, 21);
+            this.SeriesBox.Size = new System.Drawing.Size(195, 21);
             this.SeriesBox.TabIndex = 2;
             // 
             // menuStrip1
@@ -268,7 +270,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // 파일ToolStripMenuItem
             // 
@@ -373,7 +374,7 @@
             this.BookNumberBox.Location = new System.Drawing.Point(67, 30);
             this.BookNumberBox.Name = "BookNumberBox";
             this.BookNumberBox.ReadOnly = true;
-            this.BookNumberBox.Size = new System.Drawing.Size(298, 21);
+            this.BookNumberBox.Size = new System.Drawing.Size(184, 21);
             this.BookNumberBox.TabIndex = 41;
             // 
             // groupBox2
@@ -434,10 +435,10 @@
             // 
             this.LanguageBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LanguageBox.Location = new System.Drawing.Point(56, 300);
+            this.LanguageBox.Location = new System.Drawing.Point(55, 300);
             this.LanguageBox.Name = "LanguageBox";
             this.LanguageBox.ReadOnly = true;
-            this.LanguageBox.Size = new System.Drawing.Size(191, 21);
+            this.LanguageBox.Size = new System.Drawing.Size(87, 21);
             this.LanguageBox.TabIndex = 37;
             // 
             // IsColorButton
@@ -480,7 +481,7 @@
             this.AgeRatingBox.Location = new System.Drawing.Point(67, 273);
             this.AgeRatingBox.Name = "AgeRatingBox";
             this.AgeRatingBox.ReadOnly = true;
-            this.AgeRatingBox.Size = new System.Drawing.Size(298, 21);
+            this.AgeRatingBox.Size = new System.Drawing.Size(184, 21);
             this.AgeRatingBox.TabIndex = 33;
             // 
             // label18
@@ -691,7 +692,7 @@
             this.GenreBox.Location = new System.Drawing.Point(56, 246);
             this.GenreBox.Name = "GenreBox";
             this.GenreBox.ReadOnly = true;
-            this.GenreBox.Size = new System.Drawing.Size(309, 21);
+            this.GenreBox.Size = new System.Drawing.Size(195, 21);
             this.GenreBox.TabIndex = 27;
             // 
             // PublisherBox
@@ -701,7 +702,7 @@
             this.PublisherBox.Location = new System.Drawing.Point(56, 219);
             this.PublisherBox.Name = "PublisherBox";
             this.PublisherBox.ReadOnly = true;
-            this.PublisherBox.Size = new System.Drawing.Size(309, 21);
+            this.PublisherBox.Size = new System.Drawing.Size(195, 21);
             this.PublisherBox.TabIndex = 25;
             // 
             // label7
@@ -781,7 +782,7 @@
             this.SeriesGroupBox.Location = new System.Drawing.Point(79, 165);
             this.SeriesGroupBox.Name = "SeriesGroupBox";
             this.SeriesGroupBox.ReadOnly = true;
-            this.SeriesGroupBox.Size = new System.Drawing.Size(286, 21);
+            this.SeriesGroupBox.Size = new System.Drawing.Size(172, 21);
             this.SeriesGroupBox.TabIndex = 13;
             // 
             // StoryArcBox
@@ -791,7 +792,7 @@
             this.StoryArcBox.Location = new System.Drawing.Point(56, 138);
             this.StoryArcBox.Name = "StoryArcBox";
             this.StoryArcBox.ReadOnly = true;
-            this.StoryArcBox.Size = new System.Drawing.Size(309, 21);
+            this.StoryArcBox.Size = new System.Drawing.Size(195, 21);
             this.StoryArcBox.TabIndex = 12;
             // 
             // AlternateSeriesBox
@@ -801,7 +802,7 @@
             this.AlternateSeriesBox.Location = new System.Drawing.Point(56, 111);
             this.AlternateSeriesBox.Name = "AlternateSeriesBox";
             this.AlternateSeriesBox.ReadOnly = true;
-            this.AlternateSeriesBox.Size = new System.Drawing.Size(309, 21);
+            this.AlternateSeriesBox.Size = new System.Drawing.Size(195, 21);
             this.AlternateSeriesBox.TabIndex = 11;
             // 
             // label4
@@ -859,6 +860,7 @@
             this.StartButton.TabIndex = 8;
             this.StartButton.Text = "실행";
             this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // ExtractOneButton
             // 
@@ -909,7 +911,6 @@
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "BookManager";
             this.Size = new System.Drawing.Size(800, 489);
-            this.Load += new System.EventHandler(this.BookManager_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

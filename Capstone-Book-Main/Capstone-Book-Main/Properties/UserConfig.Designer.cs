@@ -70,5 +70,17 @@ namespace Capstone_Book_Main.Properties {
                 this["HideByPW"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Filepath {
+            get {
+                return ((string)(this["Filepath"]));
+            }
+            set {
+                this["Filepath"] = value;
+            }
+        }
     }
 }

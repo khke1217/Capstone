@@ -18,7 +18,7 @@ namespace Capstone_Book_Main
         string dbroute = "MyDB.sqlite";
         string file_path = "";
         Config configDialog = new Config();
-
+        DataSet data = new DataSet();
 
         public class StringMeta
         {
@@ -82,6 +82,8 @@ namespace Capstone_Book_Main
                 FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
                 dialog.ShowDialog();
                 file_path = dialog.SelectedPath;
+                Properties.UserConfig.Default.Filepath = file_path;
+                Properties.UserConfig.Default.Save();
 
                 Db_regist(file_path); // DB에 파일 등록
                 Db_view();
@@ -112,7 +114,7 @@ namespace Capstone_Book_Main
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, blackandwhite TEXT, manga TEXT);";
+                    "age_rating TEXT, blackandwhite BOOL, manga TEXT, booknumber INT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -169,12 +171,20 @@ namespace Capstone_Book_Main
 
         private void Db_view()
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+            SQLiteConnection connStr = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
 
-            conn.Open();
+            using (var conn = new SQLiteConnection(connStr))
+            {
+                string query = "SELECT * FROM R_BOOK";
+
+                var adpt = new SQLiteDataAdapter(query, connStr);
+                adpt.Fill(data);
+            }
+
+            connStr.Open();
             string sql = "SELECT * FROM R_BOOK;";
 
-            SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+            SQLiteCommand cmd = new SQLiteCommand(sql, connStr);
             SQLiteDataReader rdr = cmd.ExecuteReader();
             while ( rdr.Read())
             {
@@ -190,7 +200,8 @@ namespace Capstone_Book_Main
                 listView1.Items.Add(item);
             }
             rdr.Close();
-            conn.Close();
+            connStr.Close();
+       
         }
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
@@ -201,11 +212,11 @@ namespace Capstone_Book_Main
                 TitleBox.ReadOnly = false;
                 SeriesBox.ReadOnly = false;
                 NumberBox.ReadOnly = false;
+                BookNumberBox.ReadOnly = false;
                 CountBox.ReadOnly = false;
                 VolumeBox.ReadOnly = false;
                 AlternateSeriesBox.ReadOnly = false;
                 StoryArcBox.ReadOnly = false;
-                SeriesBox.ReadOnly = false;
                 SeriesGroupBox.ReadOnly = false;
                 YearBox.ReadOnly = false;
                 MonthBox.ReadOnly = false;
@@ -233,11 +244,11 @@ namespace Capstone_Book_Main
                 TitleBox.ReadOnly = true;
                 SeriesBox.ReadOnly = true;
                 NumberBox.ReadOnly = true;
+                BookNumberBox.ReadOnly = true;
                 CountBox.ReadOnly = true;
                 VolumeBox.ReadOnly = true;
                 AlternateSeriesBox.ReadOnly = true;
                 StoryArcBox.ReadOnly = true;
-                SeriesBox.ReadOnly = true;
                 SeriesGroupBox.ReadOnly = true;
                 YearBox.ReadOnly = true;
                 MonthBox.ReadOnly = true;
@@ -275,14 +286,49 @@ namespace Capstone_Book_Main
             configDialog.ShowDialog();
         }
 
-        private void BookManager_Load(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataTable dt = data.Tables[0];
 
+            foreach (DataRow row in dt.Rows)
+            {
+                TitleBox.Text = row["title"].ToString();
+                SeriesBox.Text = row["series"].ToString();
+                NumberBox.Text = row["number"].ToString();
+                BookNumberBox.Text = row["booknumber"].ToString();
+                CountBox.Text = row["count"].ToString();
+                VolumeBox.Text = row["volume"].ToString();
+                AlternateSeriesBox.Text = row["alternate_series"].ToString();
+                StoryArcBox.Text = row["storyarc"].ToString();
+                SeriesGroupBox.Text = row["seriesgroup"].ToString();
+                YearBox.Text = row["year"].ToString();
+                MonthBox.Text = row["month"].ToString();
+                DayBox.Text = row["DAY"].ToString();
+                WriterBox.Text = row["writer"].ToString();
+                PencillerBox.Text = row["penciller"].ToString();
+                InkerBox.Text = row["inker"].ToString();
+                ColoristBox.Text = row["colorist"].ToString();
+                LettererBox.Text = row["Letterer"].ToString();
+                CoverArtistBox.Text = row["cover_artist"].ToString();
+                EditorBox.Text = row["editor"].ToString();
+                PublisherBox.Text = row["publisher"].ToString();
+                ImprintBox.Text = row["imprint"].ToString();
+                GenreBox.Text = row["genre"].ToString();
+                PageCountBox.Text = row["page_count"].ToString();
+                LanguageBox.Text = row["language"].ToString();
+                AgeRatingBox.Text = row["age_rating"].ToString();
+                if(row["blackandwhite"])
+                    IsBlackButton.Checked = true;
+                else
+                    IsColorButton.Checked = true;
+            }
+            
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
-
+            string path = Properties.UserConfig.Default.Filepath + @"\" + listView1.SelectedItems[0].SubItems[7].Text;
+            System.Diagnostics.Process.Start(@"C:\Program Files\Honeyview\Honeyview.exe", path);
         }
     }
 
