@@ -105,6 +105,7 @@
             this.ExtractAllButton = new System.Windows.Forms.Button();
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.OriginDelBox = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -302,8 +303,6 @@
             // 
             this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
             this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.옵션ToolStripMenuItem.Text = "옵션";
-            this.옵션ToolStripMenuItem.Click += new System.EventHandler(this.옵션ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -872,6 +871,7 @@
             this.toolTip1.SetToolTip(this.ExtractOneButton, "선택한 파일만 내보냅니다");
             this.ExtractOneButton.UseVisualStyleBackColor = true;
             this.ExtractOneButton.Visible = false;
+            this.ExtractOneButton.Click += new System.EventHandler(this.ExtractOneButton_Click);
             // 
             // ExtractAllButton
             // 
@@ -882,6 +882,7 @@
             this.ExtractAllButton.Text = "일괄";
             this.ExtractAllButton.UseVisualStyleBackColor = true;
             this.ExtractAllButton.Visible = false;
+            this.ExtractAllButton.Click += new System.EventHandler(this.ExtractAllButton_Click);
             // 
             // ExtractButton
             // 
@@ -896,10 +897,24 @@
             this.ExtractButton.UseVisualStyleBackColor = true;
             this.ExtractButton.Click += new System.EventHandler(this.ExtractButton_Click);
             // 
+            // OriginDelBox
+            // 
+            this.OriginDelBox.AutoSize = true;
+            this.OriginDelBox.Checked = true;
+            this.OriginDelBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OriginDelBox.Location = new System.Drawing.Point(520, 465);
+            this.OriginDelBox.Name = "OriginDelBox";
+            this.OriginDelBox.Size = new System.Drawing.Size(168, 16);
+            this.OriginDelBox.TabIndex = 12;
+            this.OriginDelBox.Text = "내보내기 시 원본파일 삭제";
+            this.OriginDelBox.UseVisualStyleBackColor = true;
+            this.OriginDelBox.Visible = false;
+            // 
             // BookManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.OriginDelBox);
             this.Controls.Add(this.ExtractButton);
             this.Controls.Add(this.ExtractAllButton);
             this.Controls.Add(this.ExtractOneButton);
@@ -1002,5 +1017,6 @@
         private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 옵션ToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader FileNameHd;
+        private System.Windows.Forms.CheckBox OriginDelBox;
     }
 }

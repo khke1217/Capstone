@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
 using System.IO;
-
+using System.Data.SQLite;
+using System.IO.Compression;
 
 namespace Capstone_Book_Main
 {
@@ -17,7 +17,6 @@ namespace Capstone_Book_Main
     {
         string dbroute = "MyDB.sqlite";
         string file_path = "";
-        Config configDialog = new Config();
         DataSet data = new DataSet();
 
         public class StringMeta
@@ -107,14 +106,14 @@ namespace Capstone_Book_Main
 
 
                 string sql = "CREATE TABLE IF NOT EXISTS R_BOOK (id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT unique," +
-                    "title TEXT, series TEXT, number INT, " +
+                    "title TEXT, series TEXT, number INT, booknumber INT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
                     "alternate_number INT, storyarc TEXT, seriesgroup TEXT, " +
                     "alternate_count INT, year INT, month INT, DAY INT, " +
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, blackandwhite BOOL, manga TEXT, booknumber INT);";
+                    "age_rating TEXT, blackandwhite BOOL, manga TEXT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -273,17 +272,11 @@ namespace Capstone_Book_Main
             canmodi = !canmodi;
         }
 
-        
-
         private void ExtractButton_Click(object sender, EventArgs e)
         {
             ExtractAllButton.Visible = !ExtractAllButton.Visible;
             ExtractOneButton.Visible = !ExtractOneButton.Visible;
-        }
-
-        private void 옵션ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            configDialog.ShowDialog();
+            OriginDelBox.Visible = !OriginDelBox.Visible;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,7 +310,7 @@ namespace Capstone_Book_Main
                 PageCountBox.Text = row["page_count"].ToString();
                 LanguageBox.Text = row["language"].ToString();
                 AgeRatingBox.Text = row["age_rating"].ToString();
-                if(row["blackandwhite"])
+                if("true"==row["blackandwhite"].ToString())
                     IsBlackButton.Checked = true;
                 else
                     IsColorButton.Checked = true;
@@ -329,6 +322,31 @@ namespace Capstone_Book_Main
         {
             string path = Properties.UserConfig.Default.Filepath + @"\" + listView1.SelectedItems[0].SubItems[7].Text;
             System.Diagnostics.Process.Start(@"C:\Program Files\Honeyview\Honeyview.exe", path);
+        }
+
+        private void ExtractAllButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ExtractOneButton_Click(object sender, EventArgs e)
+        {
+            //FolderBrowserDialog dialog = new FolderBrowserDialog();
+            //dialog.ShowDialog();
+            //string startPath = dialog.SelectedPath;
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.DefaultExt = "zip";
+            fd.Filter = "압축파일 (*.zip; *.cbz)| *.zip; *.cbz";
+            fd.ShowDialog();
+            string zipPath = fd.FileName;
+            ZipFile.ExtractToDirectory(zipPath, Directory.GetParent(zipPath) + "\\temp");
+            string startPath = Directory.GetParent(zipPath) + "\\temp";
+            CreateCBZ(startPath);
+        }
+
+        private void CreateCBZ(string startPath)
+        {
+            ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
         }
     }
 

@@ -11,22 +11,19 @@ using Capstone_Book_Main;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        BookManager ver_dll = new BookManager();
-        Form2 f2 = new Form2();
+        BookManager bm = new BookManager();
 
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
-            panel1.Controls.Add(ver_dll);
-            ver_dll.Dock = System.Windows.Forms.DockStyle.Fill;
-            Show(f2);
+            panel1.Controls.Add(bm);
+            bm.Dock = System.Windows.Forms.DockStyle.Fill;
         }
-
     }
 }
