@@ -170,6 +170,7 @@ namespace Capstone_Book_Main
 
         private void Db_view()
         {
+
             SQLiteConnection connStr = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
 
             using (var conn = new SQLiteConnection(connStr))
@@ -229,6 +230,72 @@ namespace Capstone_Book_Main
             connStr.Close();
        
         }
+
+        private void Db_update()
+        {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+
+            conn.Open();
+
+            string sql = "update R_BOOK set title = '" + TitleBox.Text + "'," +
+                "series = '" + SeriesBox.Text + "'," +
+                "number = '" + NumberBox.Text + "'," +
+                "book_number = '" + BookNumberBox.Text + "'," +
+                "count = '" + CountBox.Text + "'," +
+                "volume = '" + VolumeBox.Text + "'," +
+                "alternate_series = '" + AlternateSeriesBox.Text + "'," +
+                "storyarc = '" + StoryArcBox.Text + "'," +
+                "series_group = '" + SeriesGroupBox.Text + "'," +
+                "year = '" + YearBox.Text + "'," +
+                "month = '" + MonthBox.Text + "'," +
+                "day = '" + DayBox.Text + "'," +
+                "writer = '" + WriterBox.Text + "'," +
+                "penciller = '" + PencillerBox.Text + "'," +
+                "inker = '" + InkerBox.Text + "'," +
+                "colorist = '" + ColoristBox.Text + "'," +
+                "letterer = '" + LettererBox.Text + "'," +
+                "cover_artist = '" + CoverArtistBox.Text + "'," +
+                "editor = '" + EditorBox.Text + "'," +
+                "publisher = '" + PublisherBox.Text + "'," +
+                "imprint = '" + ImprintBox.Text + "'," +
+                "genre = '" + GenreBox.Text + "'," +
+                "page_count = '" + PageCountBox.Text + "'," +
+                "language = '" + LanguageBox.Text + "'," +
+                "format = '" + SeriesBox.Text + "'," +
+                "age_rating = '" + AgeRatingBox.Text + "' where file_name = '" +
+                listView1.SelectedItems[0].SubItems[1].Text + "';";
+
+            listView1.SelectedItems[0].SubItems[2].Text = TitleBox.Text;
+            listView1.SelectedItems[0].SubItems[3].Text = SeriesBox.Text;
+            listView1.SelectedItems[0].SubItems[4].Text = NumberBox.Text;
+            listView1.SelectedItems[0].SubItems[5].Text = BookNumberBox.Text;
+            listView1.SelectedItems[0].SubItems[6].Text = CountBox.Text;
+            listView1.SelectedItems[0].SubItems[7].Text = VolumeBox.Text;
+            listView1.SelectedItems[0].SubItems[8].Text = AlternateSeriesBox.Text;
+            listView1.SelectedItems[0].SubItems[10].Text = StoryArcBox.Text;
+            listView1.SelectedItems[0].SubItems[11].Text = SeriesGroupBox.Text;
+            listView1.SelectedItems[0].SubItems[13].Text = YearBox.Text;
+            listView1.SelectedItems[0].SubItems[14].Text = MonthBox.Text;
+            listView1.SelectedItems[0].SubItems[15].Text = DayBox.Text;
+            listView1.SelectedItems[0].SubItems[16].Text = WriterBox.Text;
+            listView1.SelectedItems[0].SubItems[17].Text = PencillerBox.Text;
+            listView1.SelectedItems[0].SubItems[18].Text = InkerBox.Text;
+            listView1.SelectedItems[0].SubItems[19].Text = ColoristBox.Text;
+            listView1.SelectedItems[0].SubItems[20].Text = LettererBox.Text;
+            listView1.SelectedItems[0].SubItems[21].Text = CoverArtistBox.Text;
+            listView1.SelectedItems[0].SubItems[22].Text = EditorBox.Text;
+            listView1.SelectedItems[0].SubItems[23].Text = PublisherBox.Text;
+            listView1.SelectedItems[0].SubItems[24].Text = ImprintBox.Text;
+            listView1.SelectedItems[0].SubItems[25].Text = GenreBox.Text;
+            listView1.SelectedItems[0].SubItems[26].Text = PageCountBox.Text;
+            listView1.SelectedItems[0].SubItems[27].Text = LanguageBox.Text;
+            listView1.SelectedItems[0].SubItems[29].Text = AgeRatingBox.Text;
+
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            command.ExecuteNonQuery();
+
+            conn.Close();
+        }
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
             if (!canmodi)
@@ -262,6 +329,8 @@ namespace Capstone_Book_Main
                 AgeRatingBox.ReadOnly = false;
                 IsBlackButton.Enabled = true;
                 IsColorButton.Enabled = true;
+
+
             }
             else
             {
@@ -294,6 +363,8 @@ namespace Capstone_Book_Main
                 AgeRatingBox.ReadOnly = true;
                 IsBlackButton.Enabled = false;
                 IsColorButton.Enabled = false;
+
+                Db_update();
             }
 
             canmodi = !canmodi;
@@ -307,42 +378,49 @@ namespace Capstone_Book_Main
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TitleBox.Text = listView1.SelectedItems[0].SubItems[2].Text;
-            SeriesBox.Text = listView1.SelectedItems[0].SubItems[3].Text;
-            NumberBox.Text = listView1.SelectedItems[0].SubItems[4].Text;
-            BookNumberBox.Text = listView1.SelectedItems[0].SubItems[5].Text;
-            CountBox.Text = listView1.SelectedItems[0].SubItems[6].Text;
-            VolumeBox.Text = listView1.SelectedItems[0].SubItems[7].Text;
-            AlternateSeriesBox.Text = listView1.SelectedItems[0].SubItems[8].Text;
-            StoryArcBox.Text = listView1.SelectedItems[0].SubItems[10].Text;
-            SeriesGroupBox.Text = listView1.SelectedItems[0].SubItems[11].Text;
-            YearBox.Text = listView1.SelectedItems[0].SubItems[13].Text;
-            MonthBox.Text = listView1.SelectedItems[0].SubItems[14].Text;
-            DayBox.Text = listView1.SelectedItems[0].SubItems[15].Text;
-            WriterBox.Text = listView1.SelectedItems[0].SubItems[16].Text;
-            PencillerBox.Text = listView1.SelectedItems[0].SubItems[17].Text;
-            InkerBox.Text = listView1.SelectedItems[0].SubItems[18].Text;
-            ColoristBox.Text = listView1.SelectedItems[0].SubItems[19].Text;
-            LettererBox.Text = listView1.SelectedItems[0].SubItems[20].Text;
-            CoverArtistBox.Text = listView1.SelectedItems[0].SubItems[21].Text;
-            EditorBox.Text = listView1.SelectedItems[0].SubItems[22].Text;
-            PublisherBox.Text = listView1.SelectedItems[0].SubItems[23].Text;
-            ImprintBox.Text = listView1.SelectedItems[0].SubItems[24].Text;
-            GenreBox.Text = listView1.SelectedItems[0].SubItems[25].Text;
-            PageCountBox.Text = listView1.SelectedItems[0].SubItems[26].Text;
-            LanguageBox.Text = listView1.SelectedItems[0].SubItems[27].Text;
-            AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[29].Text;
-
-            if (listView1.SelectedItems[0].SubItems[30].Text == "B")
+            try
             {
-                IsBlackButton.Checked = true;
-                IsColorButton.Checked = false;
+                TitleBox.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                SeriesBox.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                NumberBox.Text = listView1.SelectedItems[0].SubItems[4].Text;
+                BookNumberBox.Text = listView1.SelectedItems[0].SubItems[5].Text;
+                CountBox.Text = listView1.SelectedItems[0].SubItems[6].Text;
+                VolumeBox.Text = listView1.SelectedItems[0].SubItems[7].Text;
+                AlternateSeriesBox.Text = listView1.SelectedItems[0].SubItems[8].Text;
+                StoryArcBox.Text = listView1.SelectedItems[0].SubItems[10].Text;
+                SeriesGroupBox.Text = listView1.SelectedItems[0].SubItems[11].Text;
+                YearBox.Text = listView1.SelectedItems[0].SubItems[13].Text;
+                MonthBox.Text = listView1.SelectedItems[0].SubItems[14].Text;
+                DayBox.Text = listView1.SelectedItems[0].SubItems[15].Text;
+                WriterBox.Text = listView1.SelectedItems[0].SubItems[16].Text;
+                PencillerBox.Text = listView1.SelectedItems[0].SubItems[17].Text;
+                InkerBox.Text = listView1.SelectedItems[0].SubItems[18].Text;
+                ColoristBox.Text = listView1.SelectedItems[0].SubItems[19].Text;
+                LettererBox.Text = listView1.SelectedItems[0].SubItems[20].Text;
+                CoverArtistBox.Text = listView1.SelectedItems[0].SubItems[21].Text;
+                EditorBox.Text = listView1.SelectedItems[0].SubItems[22].Text;
+                PublisherBox.Text = listView1.SelectedItems[0].SubItems[23].Text;
+                ImprintBox.Text = listView1.SelectedItems[0].SubItems[24].Text;
+                GenreBox.Text = listView1.SelectedItems[0].SubItems[25].Text;
+                PageCountBox.Text = listView1.SelectedItems[0].SubItems[26].Text;
+                LanguageBox.Text = listView1.SelectedItems[0].SubItems[27].Text;
+                AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[29].Text;
+
+                if (listView1.SelectedItems[0].SubItems[30].Text == "B")
+                {
+                    IsBlackButton.Checked = true;
+                    IsColorButton.Checked = false;
+                }
+
+                else
+                {
+                    IsBlackButton.Checked = false;
+                    IsColorButton.Checked = true;
+                }
             }
-
-            else
+            catch (System.ArgumentOutOfRangeException)
             {
-                IsBlackButton.Checked = false;
-                IsColorButton.Checked = true;
+
             }
         }
         private void StartButton_Click(object sender, EventArgs e)
