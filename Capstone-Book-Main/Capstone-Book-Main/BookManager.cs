@@ -568,11 +568,6 @@ namespace Capstone_Book_Main
             xdoc.Save(url);
         }
 
-        private void dB새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            refresh();
-        }
-
         private void refresh()
         {
             FileInfo fileInfo = new FileInfo(dbroute);
@@ -618,6 +613,11 @@ namespace Capstone_Book_Main
             {
                 throw;
             }
+        }
+
+        private void 파일ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            refresh();
         }
     } 
 }

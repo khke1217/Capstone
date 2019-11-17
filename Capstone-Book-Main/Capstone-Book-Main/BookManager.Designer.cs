@@ -74,11 +74,6 @@
             this.SeriesBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dB새로고침ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.도구ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.옵션ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.BookNumberBox = new System.Windows.Forms.TextBox();
@@ -423,9 +418,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.파일ToolStripMenuItem,
-            this.수정ToolStripMenuItem,
-            this.도구ToolStripMenuItem});
+            this.파일ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -434,44 +427,10 @@
             // 
             // 파일ToolStripMenuItem
             // 
-            this.파일ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dB새로고침ToolStripMenuItem});
             this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
-            this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.파일ToolStripMenuItem.Text = "파일";
-            // 
-            // dB새로고침ToolStripMenuItem
-            // 
-            this.dB새로고침ToolStripMenuItem.Name = "dB새로고침ToolStripMenuItem";
-            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.dB새로고침ToolStripMenuItem.Text = "DB 새로고침";
-            this.dB새로고침ToolStripMenuItem.Click += new System.EventHandler(this.dB새로고침ToolStripMenuItem_Click);
-            // 
-            // 수정ToolStripMenuItem
-            // 
-            this.수정ToolStripMenuItem.Name = "수정ToolStripMenuItem";
-            this.수정ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.수정ToolStripMenuItem.Text = "수정";
-            // 
-            // 도구ToolStripMenuItem
-            // 
-            this.도구ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.도움말ToolStripMenuItem,
-            this.옵션ToolStripMenuItem});
-            this.도구ToolStripMenuItem.Name = "도구ToolStripMenuItem";
-            this.도구ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.도구ToolStripMenuItem.Text = "도구";
-            // 
-            // 도움말ToolStripMenuItem
-            // 
-            this.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem";
-            this.도움말ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.도움말ToolStripMenuItem.Text = "도움말";
-            // 
-            // 옵션ToolStripMenuItem
-            // 
-            this.옵션ToolStripMenuItem.Name = "옵션ToolStripMenuItem";
-            this.옵션ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.파일ToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.파일ToolStripMenuItem.Text = "DB 새로고침";
+            this.파일ToolStripMenuItem.Click += new System.EventHandler(this.파일ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -1170,14 +1129,10 @@
         private System.Windows.Forms.TextBox EditorBox;
         private System.Windows.Forms.Button ExtractAllButton;
         private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 수정ToolStripMenuItem;
         private System.Windows.Forms.Button ExtractButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox BookNumberBox;
-        private System.Windows.Forms.ToolStripMenuItem 도구ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 도움말ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 옵션ToolStripMenuItem;
         private System.Windows.Forms.CheckBox OriginDelBox;
         private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.ColumnHeader File_name;
@@ -1213,6 +1168,5 @@
         private System.Windows.Forms.ColumnHeader Manga;
         private System.Windows.Forms.ColumnHeader Library;
         private System.Windows.Forms.ColumnHeader F_path;
-        private System.Windows.Forms.ToolStripMenuItem dB새로고침ToolStripMenuItem;
     }
 }
