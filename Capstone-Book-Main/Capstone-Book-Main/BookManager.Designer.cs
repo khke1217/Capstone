@@ -63,6 +63,7 @@
             this.Blackandwhite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Manga = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Library = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.F_path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SeriesLable = new System.Windows.Forms.Label();
             this.CanmodiButton = new System.Windows.Forms.Button();
             this.CountBox = new System.Windows.Forms.TextBox();
@@ -131,7 +132,7 @@
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.OriginDelBox = new System.Windows.Forms.CheckBox();
-            this.F_path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dB새로고침ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -324,6 +325,11 @@
             // 
             this.Library.Width = 0;
             // 
+            // F_path
+            // 
+            this.F_path.Text = "파일경로";
+            this.F_path.Width = 80;
+            // 
             // SeriesLable
             // 
             this.SeriesLable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -428,6 +434,8 @@
             // 
             // 파일ToolStripMenuItem
             // 
+            this.파일ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dB새로고침ToolStripMenuItem});
             this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
             this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.파일ToolStripMenuItem.Text = "파일";
@@ -1064,10 +1072,11 @@
             this.OriginDelBox.UseVisualStyleBackColor = true;
             this.OriginDelBox.Visible = false;
             // 
-            // F_path
+            // dB새로고침ToolStripMenuItem
             // 
-            this.F_path.Text = "파일경로";
-            this.F_path.Width = 80;
+            this.dB새로고침ToolStripMenuItem.Name = "dB새로고침ToolStripMenuItem";
+            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dB새로고침ToolStripMenuItem.Text = "DB 새로고침";
             // 
             // BookManager
             // 
@@ -1203,5 +1212,6 @@
         private System.Windows.Forms.ColumnHeader Manga;
         private System.Windows.Forms.ColumnHeader Library;
         private System.Windows.Forms.ColumnHeader F_path;
+        private System.Windows.Forms.ToolStripMenuItem dB새로고침ToolStripMenuItem;
     }
 }
