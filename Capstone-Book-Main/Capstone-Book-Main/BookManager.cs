@@ -519,6 +519,26 @@ namespace Capstone_Book_Main
             xdoc.Add(xroot);
             xdoc.Save(url);
         }
+
+        private void dB새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo(dbroute);
+
+            fileInfo.Delete();
+            listView1.Items.Clear();
+
+            Db_init(); // DB 생성/초기화
+
+            FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
+            dialog.ShowDialog();
+            file_path = dialog.SelectedPath;
+            Properties.UserConfig.Default.path = file_path;
+            Properties.UserConfig.Default.Save();
+            dbroute = file_path + "\\db.sqlite";
+
+            Db_regist(file_path); // DB에 파일 등록
+            Db_view();
+        }
     }
 
 }

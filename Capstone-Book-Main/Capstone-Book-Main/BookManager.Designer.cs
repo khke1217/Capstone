@@ -74,6 +74,7 @@
             this.SeriesBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dB새로고침ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.수정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도구ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,7 +133,6 @@
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.OriginDelBox = new System.Windows.Forms.CheckBox();
-            this.dB새로고침ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -439,6 +439,13 @@
             this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
             this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.파일ToolStripMenuItem.Text = "파일";
+            // 
+            // dB새로고침ToolStripMenuItem
+            // 
+            this.dB새로고침ToolStripMenuItem.Name = "dB새로고침ToolStripMenuItem";
+            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dB새로고침ToolStripMenuItem.Text = "DB 새로고침";
+            this.dB새로고침ToolStripMenuItem.Click += new System.EventHandler(this.dB새로고침ToolStripMenuItem_Click);
             // 
             // 수정ToolStripMenuItem
             // 
@@ -1071,12 +1078,6 @@
             this.OriginDelBox.Text = "내보내기 시 원본파일 삭제";
             this.OriginDelBox.UseVisualStyleBackColor = true;
             this.OriginDelBox.Visible = false;
-            // 
-            // dB새로고침ToolStripMenuItem
-            // 
-            this.dB새로고침ToolStripMenuItem.Name = "dB새로고침ToolStripMenuItem";
-            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dB새로고침ToolStripMenuItem.Text = "DB 새로고침";
             // 
             // BookManager
             // 
