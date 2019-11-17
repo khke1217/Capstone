@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.SQLite;
 using System.IO.Compression;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Capstone_Book_Main
 {
@@ -307,42 +309,48 @@ namespace Capstone_Book_Main
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TitleBox.Text = listView1.SelectedItems[0].SubItems[2].Text;
-            SeriesBox.Text = listView1.SelectedItems[0].SubItems[3].Text;
-            NumberBox.Text = listView1.SelectedItems[0].SubItems[4].Text;
-            BookNumberBox.Text = listView1.SelectedItems[0].SubItems[5].Text;
-            CountBox.Text = listView1.SelectedItems[0].SubItems[6].Text;
-            VolumeBox.Text = listView1.SelectedItems[0].SubItems[7].Text;
-            AlternateSeriesBox.Text = listView1.SelectedItems[0].SubItems[8].Text;
-            StoryArcBox.Text = listView1.SelectedItems[0].SubItems[10].Text;
-            SeriesGroupBox.Text = listView1.SelectedItems[0].SubItems[11].Text;
-            YearBox.Text = listView1.SelectedItems[0].SubItems[13].Text;
-            MonthBox.Text = listView1.SelectedItems[0].SubItems[14].Text;
-            DayBox.Text = listView1.SelectedItems[0].SubItems[15].Text;
-            WriterBox.Text = listView1.SelectedItems[0].SubItems[16].Text;
-            PencillerBox.Text = listView1.SelectedItems[0].SubItems[17].Text;
-            InkerBox.Text = listView1.SelectedItems[0].SubItems[18].Text;
-            ColoristBox.Text = listView1.SelectedItems[0].SubItems[19].Text;
-            LettererBox.Text = listView1.SelectedItems[0].SubItems[20].Text;
-            CoverArtistBox.Text = listView1.SelectedItems[0].SubItems[21].Text;
-            EditorBox.Text = listView1.SelectedItems[0].SubItems[22].Text;
-            PublisherBox.Text = listView1.SelectedItems[0].SubItems[23].Text;
-            ImprintBox.Text = listView1.SelectedItems[0].SubItems[24].Text;
-            GenreBox.Text = listView1.SelectedItems[0].SubItems[25].Text;
-            PageCountBox.Text = listView1.SelectedItems[0].SubItems[26].Text;
-            LanguageBox.Text = listView1.SelectedItems[0].SubItems[27].Text;
-            AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[29].Text;
+            try{
+                TitleBox.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                SeriesBox.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                NumberBox.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                BookNumberBox.Text = listView1.SelectedItems[0].SubItems[4].Text;
+                CountBox.Text = listView1.SelectedItems[0].SubItems[5].Text;
+                VolumeBox.Text = listView1.SelectedItems[0].SubItems[6].Text;
+                AlternateSeriesBox.Text = listView1.SelectedItems[0].SubItems[7].Text;
+                StoryArcBox.Text = listView1.SelectedItems[0].SubItems[9].Text;
+                SeriesGroupBox.Text = listView1.SelectedItems[0].SubItems[10].Text;
+                YearBox.Text = listView1.SelectedItems[0].SubItems[12].Text;
+                MonthBox.Text = listView1.SelectedItems[0].SubItems[13].Text;
+                DayBox.Text = listView1.SelectedItems[0].SubItems[14].Text;
+                WriterBox.Text = listView1.SelectedItems[0].SubItems[15].Text;
+                PencillerBox.Text = listView1.SelectedItems[0].SubItems[16].Text;
+                InkerBox.Text = listView1.SelectedItems[0].SubItems[17].Text;
+                ColoristBox.Text = listView1.SelectedItems[0].SubItems[18].Text;
+                LettererBox.Text = listView1.SelectedItems[0].SubItems[19].Text;
+                CoverArtistBox.Text = listView1.SelectedItems[0].SubItems[20].Text;
+                EditorBox.Text = listView1.SelectedItems[0].SubItems[21].Text;
+                PublisherBox.Text = listView1.SelectedItems[0].SubItems[22].Text;
+                ImprintBox.Text = listView1.SelectedItems[0].SubItems[23].Text;
+                GenreBox.Text = listView1.SelectedItems[0].SubItems[24].Text;
+                PageCountBox.Text = listView1.SelectedItems[0].SubItems[25].Text;
+                LanguageBox.Text = listView1.SelectedItems[0].SubItems[26].Text;
+                AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[28].Text;
 
-            if (listView1.SelectedItems[0].SubItems[30].Text == "B")
-            {
-                IsBlackButton.Checked = true;
-                IsColorButton.Checked = false;
+                if (listView1.SelectedItems[0].SubItems[30].Text == "Yes")
+                {
+                    IsBlackButton.Checked = true;
+                    IsColorButton.Checked = false;
+                }
+
+                else
+                {
+                    IsBlackButton.Checked = false;
+                    IsColorButton.Checked = true;
+                }
             }
-
-            else
+            catch (System.ArgumentOutOfRangeException)
             {
-                IsBlackButton.Checked = false;
-                IsColorButton.Checked = true;
+
             }
         }
         private void StartButton_Click(object sender, EventArgs e)
@@ -373,7 +381,48 @@ namespace Capstone_Book_Main
 
         private void CreateCBZ(string startPath)
         {
-            ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
+            CreateXml(startPath);
+            //ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
+        }
+
+        private void CreateXml(string startPath)
+        {
+            string url = startPath + "\\ComicInfo.xml";
+            XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
+            XElement xroot = new XElement("ComicInfo",
+                new XElement("title", listView1.SelectedItems[0].SubItems[1].Text),
+                new XElement("Count", listView1.SelectedItems[0].SubItems[2].Text),
+                new XElement("Number", listView1.SelectedItems[0].SubItems[3].Text),
+                new XElement("Count", listView1.SelectedItems[0].SubItems[5].Text),
+                new XElement("Volume", listView1.SelectedItems[0].SubItems[6].Text),
+                new XElement("AlternateSeries", listView1.SelectedItems[0].SubItems[7].Text),
+                new XElement("AlternateNumber", listView1.SelectedItems[0].SubItems[8].Text),
+                new XElement("StoryArc", listView1.SelectedItems[0].SubItems[9].Text),
+                new XElement("SeriesGroup", listView1.SelectedItems[0].SubItems[10].Text),
+                new XElement("AlternateCount", listView1.SelectedItems[0].SubItems[11].Text),
+                new XElement("Year", listView1.SelectedItems[0].SubItems[12].Text),
+                new XElement("Month", listView1.SelectedItems[0].SubItems[13].Text),
+                new XElement("Day", listView1.SelectedItems[0].SubItems[14].Text),
+                new XElement("Writer", listView1.SelectedItems[0].SubItems[15].Text),
+                new XElement("Penciller", listView1.SelectedItems[0].SubItems[16].Text),
+                new XElement("Inker", listView1.SelectedItems[0].SubItems[17].Text),
+                new XElement("Colorist", listView1.SelectedItems[0].SubItems[18].Text),
+                new XElement("Letterer", listView1.SelectedItems[0].SubItems[19].Text),
+                new XElement("CoverArtist", listView1.SelectedItems[0].SubItems[20].Text),
+                new XElement("Editor", listView1.SelectedItems[0].SubItems[21].Text),
+                new XElement("Publisher", listView1.SelectedItems[0].SubItems[22].Text),
+                new XElement("Imprint", listView1.SelectedItems[0].SubItems[23].Text),
+                new XElement("Genre", listView1.SelectedItems[0].SubItems[24].Text),
+                new XElement("PageCount", listView1.SelectedItems[0].SubItems[25].Text),
+                new XElement("LanguageISO", listView1.SelectedItems[0].SubItems[26].Text),
+                new XElement("Format", listView1.SelectedItems[0].SubItems[27].Text),
+                new XElement("AgeRating", listView1.SelectedItems[0].SubItems[28].Text),
+                new XElement("BlackAndWhite", listView1.SelectedItems[0].SubItems[29].Text),
+                new XElement("Manga", listView1.SelectedItems[0].SubItems[30].Text),
+                new XElement("BookNumber", listView1.SelectedItems[0].SubItems[4].Text)
+                );
+            xdoc.Add(xroot);
+            xdoc.Save(url);
         }
     }
 

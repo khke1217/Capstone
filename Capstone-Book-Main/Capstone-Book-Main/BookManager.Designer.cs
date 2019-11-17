@@ -30,6 +30,39 @@
         {
             this.components = new System.ComponentModel.Container();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.File_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Series = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Book_number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Volume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Alternate_series = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Alternate_number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Storyarc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Seriesgroup = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Alternate_count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Month = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Day = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Writer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Penciller = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Inker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Colorist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Letterer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Cover_artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Editor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Publisher = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Imprint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Page_count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Language = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Format = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Age_rating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Blackandwhite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Manga = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Library = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SeriesLable = new System.Windows.Forms.Label();
             this.CanmodiButton = new System.Windows.Forms.Button();
             this.CountBox = new System.Windows.Forms.TextBox();
@@ -98,39 +131,6 @@
             this.ExtractButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.OriginDelBox = new System.Windows.Forms.CheckBox();
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.File_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Series = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Volume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Alternate_series = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Storyarc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Seriesgroup = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Alternate_count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Month = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Day = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Writer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Penciller = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Inker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Colorist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Letterer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Cover_artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Book_number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Alternate_number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Editor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Publisher = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Imprint = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Page_count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Language = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Format = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Age_rating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Blackandwhite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Manga = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Library = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -187,6 +187,168 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // Id
+            // 
+            this.Id.DisplayIndex = 2;
+            this.Id.Width = 0;
+            // 
+            // File_name
+            // 
+            this.File_name.DisplayIndex = 8;
+            this.File_name.Text = "파일";
+            // 
+            // Title
+            // 
+            this.Title.DisplayIndex = 1;
+            this.Title.Text = "제목";
+            this.Title.Width = 100;
+            // 
+            // Series
+            // 
+            this.Series.Text = "시리즈";
+            // 
+            // Number
+            // 
+            this.Number.DisplayIndex = 9;
+            this.Number.Width = 0;
+            // 
+            // Book_number
+            // 
+            this.Book_number.DisplayIndex = 0;
+            this.Book_number.Text = "도서번호";
+            // 
+            // Count
+            // 
+            this.Count.DisplayIndex = 10;
+            this.Count.Width = 0;
+            // 
+            // Volume
+            // 
+            this.Volume.DisplayIndex = 11;
+            this.Volume.Width = 0;
+            // 
+            // Alternate_series
+            // 
+            this.Alternate_series.DisplayIndex = 12;
+            this.Alternate_series.Width = 0;
+            // 
+            // Alternate_number
+            // 
+            this.Alternate_number.DisplayIndex = 23;
+            this.Alternate_number.Width = 0;
+            // 
+            // Storyarc
+            // 
+            this.Storyarc.DisplayIndex = 13;
+            this.Storyarc.Width = 0;
+            // 
+            // Seriesgroup
+            // 
+            this.Seriesgroup.DisplayIndex = 14;
+            this.Seriesgroup.Width = 0;
+            // 
+            // Alternate_count
+            // 
+            this.Alternate_count.DisplayIndex = 15;
+            this.Alternate_count.Width = 0;
+            // 
+            // Year
+            // 
+            this.Year.DisplayIndex = 16;
+            this.Year.Width = 0;
+            // 
+            // Month
+            // 
+            this.Month.DisplayIndex = 17;
+            this.Month.Width = 0;
+            // 
+            // Day
+            // 
+            this.Day.DisplayIndex = 18;
+            this.Day.Width = 0;
+            // 
+            // Writer
+            // 
+            this.Writer.DisplayIndex = 4;
+            this.Writer.Text = "작가";
+            // 
+            // Penciller
+            // 
+            this.Penciller.DisplayIndex = 5;
+            this.Penciller.Text = "작화";
+            // 
+            // Inker
+            // 
+            this.Inker.DisplayIndex = 19;
+            this.Inker.Width = 0;
+            // 
+            // Colorist
+            // 
+            this.Colorist.DisplayIndex = 20;
+            this.Colorist.Width = 0;
+            // 
+            // Letterer
+            // 
+            this.Letterer.DisplayIndex = 21;
+            this.Letterer.Width = 0;
+            // 
+            // Cover_artist
+            // 
+            this.Cover_artist.DisplayIndex = 22;
+            this.Cover_artist.Width = 0;
+            // 
+            // Editor
+            // 
+            this.Editor.DisplayIndex = 24;
+            this.Editor.Width = 0;
+            // 
+            // Publisher
+            // 
+            this.Publisher.DisplayIndex = 25;
+            this.Publisher.Width = 0;
+            // 
+            // Imprint
+            // 
+            this.Imprint.DisplayIndex = 26;
+            this.Imprint.Width = 0;
+            // 
+            // Genre
+            // 
+            this.Genre.DisplayIndex = 6;
+            this.Genre.Text = "장르";
+            // 
+            // Page_count
+            // 
+            this.Page_count.DisplayIndex = 27;
+            this.Page_count.Width = 0;
+            // 
+            // Language
+            // 
+            this.Language.DisplayIndex = 28;
+            this.Language.Width = 0;
+            // 
+            // Format
+            // 
+            this.Format.DisplayIndex = 29;
+            this.Format.Width = 0;
+            // 
+            // Age_rating
+            // 
+            this.Age_rating.DisplayIndex = 7;
+            this.Age_rating.Text = "연령제한";
+            // 
+            // Blackandwhite
+            // 
+            this.Blackandwhite.Width = 0;
+            // 
+            // Manga
+            // 
+            this.Manga.Width = 0;
+            // 
+            // Library
+            // 
+            this.Library.Width = 0;
             // 
             // SeriesLable
             // 
@@ -927,168 +1089,6 @@
             this.OriginDelBox.Text = "내보내기 시 원본파일 삭제";
             this.OriginDelBox.UseVisualStyleBackColor = true;
             this.OriginDelBox.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DisplayIndex = 2;
-            this.Id.Width = 0;
-            // 
-            // File_name
-            // 
-            this.File_name.DisplayIndex = 8;
-            this.File_name.Text = "파일";
-            // 
-            // Title
-            // 
-            this.Title.DisplayIndex = 1;
-            this.Title.Text = "제목";
-            this.Title.Width = 100;
-            // 
-            // Series
-            // 
-            this.Series.Text = "시리즈";
-            // 
-            // Number
-            // 
-            this.Number.DisplayIndex = 9;
-            this.Number.Width = 0;
-            // 
-            // Count
-            // 
-            this.Count.DisplayIndex = 10;
-            this.Count.Width = 0;
-            // 
-            // Volume
-            // 
-            this.Volume.DisplayIndex = 11;
-            this.Volume.Width = 0;
-            // 
-            // Alternate_series
-            // 
-            this.Alternate_series.DisplayIndex = 12;
-            this.Alternate_series.Width = 0;
-            // 
-            // Storyarc
-            // 
-            this.Storyarc.DisplayIndex = 13;
-            this.Storyarc.Width = 0;
-            // 
-            // Seriesgroup
-            // 
-            this.Seriesgroup.DisplayIndex = 14;
-            this.Seriesgroup.Width = 0;
-            // 
-            // Alternate_count
-            // 
-            this.Alternate_count.DisplayIndex = 15;
-            this.Alternate_count.Width = 0;
-            // 
-            // Year
-            // 
-            this.Year.DisplayIndex = 16;
-            this.Year.Width = 0;
-            // 
-            // Month
-            // 
-            this.Month.DisplayIndex = 17;
-            this.Month.Width = 0;
-            // 
-            // Day
-            // 
-            this.Day.DisplayIndex = 18;
-            this.Day.Width = 0;
-            // 
-            // Writer
-            // 
-            this.Writer.DisplayIndex = 4;
-            this.Writer.Text = "작가";
-            // 
-            // Penciller
-            // 
-            this.Penciller.DisplayIndex = 5;
-            this.Penciller.Text = "작화";
-            // 
-            // Inker
-            // 
-            this.Inker.DisplayIndex = 19;
-            this.Inker.Width = 0;
-            // 
-            // Colorist
-            // 
-            this.Colorist.DisplayIndex = 20;
-            this.Colorist.Width = 0;
-            // 
-            // Letterer
-            // 
-            this.Letterer.DisplayIndex = 21;
-            this.Letterer.Width = 0;
-            // 
-            // Cover_artist
-            // 
-            this.Cover_artist.DisplayIndex = 22;
-            this.Cover_artist.Width = 0;
-            // 
-            // Book_number
-            // 
-            this.Book_number.DisplayIndex = 0;
-            this.Book_number.Text = "도서번호";
-            // 
-            // Alternate_number
-            // 
-            this.Alternate_number.DisplayIndex = 23;
-            this.Alternate_number.Width = 0;
-            // 
-            // Editor
-            // 
-            this.Editor.DisplayIndex = 24;
-            this.Editor.Width = 0;
-            // 
-            // Publisher
-            // 
-            this.Publisher.DisplayIndex = 25;
-            this.Publisher.Width = 0;
-            // 
-            // Imprint
-            // 
-            this.Imprint.DisplayIndex = 26;
-            this.Imprint.Width = 0;
-            // 
-            // Genre
-            // 
-            this.Genre.DisplayIndex = 6;
-            this.Genre.Text = "장르";
-            // 
-            // Page_count
-            // 
-            this.Page_count.DisplayIndex = 27;
-            this.Page_count.Width = 0;
-            // 
-            // Language
-            // 
-            this.Language.DisplayIndex = 28;
-            this.Language.Width = 0;
-            // 
-            // Format
-            // 
-            this.Format.DisplayIndex = 29;
-            this.Format.Width = 0;
-            // 
-            // Age_rating
-            // 
-            this.Age_rating.DisplayIndex = 7;
-            this.Age_rating.Text = "연령제한";
-            // 
-            // Blackandwhite
-            // 
-            this.Blackandwhite.Width = 0;
-            // 
-            // Manga
-            // 
-            this.Manga.Width = 0;
-            // 
-            // Library
-            // 
-            this.Library.Width = 0;
             // 
             // BookManager
             // 
