@@ -246,7 +246,7 @@ namespace Capstone_Book_Main
             else
                 isblack = "No";
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+            SQLiteConnection conn = new SQLiteConnection("Data Source="+dbroute+";Version=3;");
 
             conn.Open();
 
