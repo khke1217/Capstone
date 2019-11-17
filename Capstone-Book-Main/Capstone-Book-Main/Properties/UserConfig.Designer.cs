@@ -25,61 +25,13 @@ namespace Capstone_Book_Main.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool OriginDel {
-            get {
-                return ((bool)(this["OriginDel"]));
-            }
-            set {
-                this["OriginDel"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Password {
+        public string path {
             get {
-                return ((string)(this["Password"]));
+                return ((string)(this["path"]));
             }
             set {
-                this["Password"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ProtectByPW {
-            get {
-                return ((bool)(this["ProtectByPW"]));
-            }
-            set {
-                this["ProtectByPW"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool HideByPW {
-            get {
-                return ((bool)(this["HideByPW"]));
-            }
-            set {
-                this["HideByPW"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Filepath {
-            get {
-                return ((string)(this["Filepath"]));
-            }
-            set {
-                this["Filepath"] = value;
+                this["path"] = value;
             }
         }
     }
