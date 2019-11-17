@@ -113,7 +113,7 @@ namespace Capstone_Book_Main
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, black_and_white BOOL, manga TEXT, library TEXT);";
+                    "age_rating TEXT, black_and_white BOOL, manga TEXT, library TEXT, file_path TEXT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -139,14 +139,16 @@ namespace Capstone_Book_Main
 
             foreach (String file in files)
             {
+                string f_path = Path.GetDirectoryName(file);
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
                     case ".cbr":
                     case ".zip":
-                        string sql = "insert or ignore into R_BOOK (file_name) values ('" + Path.GetFileName(file) + "');";
+                        string sql = "insert or ignore into R_BOOK (file_name, file_path) values ('" + Path.GetFileName(file) + "', '" + f_path + "');";
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
                         command.ExecuteNonQuery();
+
                         break;
                     default:
                         break;
@@ -223,6 +225,7 @@ namespace Capstone_Book_Main
                 item.SubItems.Add(rdr["black_and_white"].ToString());
                 item.SubItems.Add(rdr["manga"].ToString());
                 item.SubItems.Add(rdr["library"].ToString());
+                item.SubItems.Add(rdr["file_path"].ToString());
 
                 listView1.Items.Add(item);
             }
@@ -233,6 +236,12 @@ namespace Capstone_Book_Main
 
         private void Db_update()
         {
+            string isblack;
+            if (IsBlackButton.Checked)
+                isblack = "Yes";
+            else
+                isblack = "No";
+
             SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
 
             conn.Open();
@@ -262,9 +271,10 @@ namespace Capstone_Book_Main
                 "page_count = '" + PageCountBox.Text + "'," +
                 "language = '" + LanguageBox.Text + "'," +
                 "format = '" + SeriesBox.Text + "'," +
-                "age_rating = '" + AgeRatingBox.Text + "' where file_name = '" +
+                "age_rating = '" + AgeRatingBox.Text + "'," +
+                "black_and_white = '" + isblack + "'  where file_name = '" +
                 listView1.SelectedItems[0].SubItems[1].Text + "';";
-
+                
             listView1.SelectedItems[0].SubItems[2].Text = TitleBox.Text;
             listView1.SelectedItems[0].SubItems[3].Text = SeriesBox.Text;
             listView1.SelectedItems[0].SubItems[4].Text = NumberBox.Text;
@@ -290,7 +300,7 @@ namespace Capstone_Book_Main
             listView1.SelectedItems[0].SubItems[26].Text = PageCountBox.Text;
             listView1.SelectedItems[0].SubItems[27].Text = LanguageBox.Text;
             listView1.SelectedItems[0].SubItems[29].Text = AgeRatingBox.Text;
-
+                
             SQLiteCommand command = new SQLiteCommand(sql, conn);
             command.ExecuteNonQuery();
 
@@ -406,7 +416,7 @@ namespace Capstone_Book_Main
                 LanguageBox.Text = listView1.SelectedItems[0].SubItems[27].Text;
                 AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[29].Text;
 
-                if (listView1.SelectedItems[0].SubItems[30].Text == "B")
+                if (listView1.SelectedItems[0].SubItems[30].Text == "Yes")
                 {
                     IsBlackButton.Checked = true;
                     IsColorButton.Checked = false;
