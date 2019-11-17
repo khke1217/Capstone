@@ -450,8 +450,12 @@ namespace Capstone_Book_Main
 
         private void ExtractOneButton_Click(object sender, EventArgs e)
         {
-            string startPath = listView1.SelectedItems[0].SubItems[33].Text;
-            if (Path.GetExtension(startPath) == ".zip")
+            ExtractToCbz(listView1.SelectedItems[0].SubItems[33].Text);
+        }
+
+        private void ExtractToCbz(string startPath)
+        {
+            if (Path.GetExtension(startPath) == ".zip" || Path.GetExtension(startPath) == ".cbz")
             {
                 string zipPath = Directory.GetParent(startPath) + "\\temp";
                 ZipFile.ExtractToDirectory(startPath, zipPath);
@@ -461,6 +465,8 @@ namespace Capstone_Book_Main
             {
                 CreateCBZ(startPath);
             }
+
+            refrash();
         }
 
         private void CreateCBZ(string startPath)
@@ -474,10 +480,20 @@ namespace Capstone_Book_Main
         private void CreateCBZ(string startPath, string zipPath)
         {
             CreateXml(zipPath);
-            ZipFile.CreateFromDirectory(zipPath, Path.ChangeExtension(startPath,".cbz"));
-            Directory.Delete(zipPath, true);
-            if (OriginDelBox.Checked)
+            try
+            {
+                ZipFile.CreateFromDirectory(zipPath, Path.ChangeExtension(startPath, ".cbz"));
+                Directory.Delete(zipPath, true);
+                if (OriginDelBox.Checked)
+                    File.Delete(startPath);
+            }
+            catch ( System.IO.IOException )
+            {
+                ZipFile.CreateFromDirectory(zipPath, Path.ChangeExtension(startPath, "_.cbz"));
                 File.Delete(startPath);
+                File.Move(Path.ChangeExtension(startPath, "_.cbz"), Path.ChangeExtension(startPath, ".cbz"));
+                Directory.Delete(zipPath, true);
+            }  
         }
 
         private void CreateXml(string startPath)
@@ -521,6 +537,11 @@ namespace Capstone_Book_Main
         }
 
         private void dB새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            refrash();
+        }
+
+        private void refrash()
         {
             FileInfo fileInfo = new FileInfo(dbroute);
 
