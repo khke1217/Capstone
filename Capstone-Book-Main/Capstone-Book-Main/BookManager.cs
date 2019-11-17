@@ -106,14 +106,14 @@ namespace Capstone_Book_Main
 
 
                 string sql = "CREATE TABLE IF NOT EXISTS R_BOOK (id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT unique," +
-                    "title TEXT, series TEXT, number INT, booknumber INT, " +
+                    "title TEXT, series TEXT, number INT, book_number INT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
-                    "alternate_number INT, storyarc TEXT, seriesgroup TEXT, " +
-                    "alternate_count INT, year INT, month INT, DAY INT, " +
+                    "alternate_number INT, storyarc TEXT, series_group TEXT, " +
+                    "alternate_count INT, year INT, month INT, day INT, " +
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, blackandwhite BOOL, manga TEXT);";
+                    "age_rating TEXT, black_and_white BOOL, manga TEXT, library TEXT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -188,14 +188,41 @@ namespace Capstone_Book_Main
             while ( rdr.Read())
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = rdr["number"].ToString();
+
+                item.Text = rdr["id"].ToString();
+                item.SubItems.Add(rdr["file_name"].ToString());
                 item.SubItems.Add(rdr["title"].ToString());
                 item.SubItems.Add(rdr["series"].ToString());
+                item.SubItems.Add(rdr["number"].ToString());
+                item.SubItems.Add(rdr["book_number"].ToString());
+                item.SubItems.Add(rdr["count"].ToString());
+                item.SubItems.Add(rdr["volume"].ToString());
+                item.SubItems.Add(rdr["alternate_series"].ToString());
+                item.SubItems.Add(rdr["alternate_number"].ToString());
+                item.SubItems.Add(rdr["storyarc"].ToString());
+                item.SubItems.Add(rdr["series_group"].ToString());
+                item.SubItems.Add(rdr["alternate_count"].ToString());
+                item.SubItems.Add(rdr["year"].ToString());
+                item.SubItems.Add(rdr["month"].ToString());
+                item.SubItems.Add(rdr["day"].ToString());
                 item.SubItems.Add(rdr["writer"].ToString());
                 item.SubItems.Add(rdr["penciller"].ToString());
+                item.SubItems.Add(rdr["inker"].ToString());
+                item.SubItems.Add(rdr["colorist"].ToString());
+                item.SubItems.Add(rdr["letterer"].ToString());
+                item.SubItems.Add(rdr["cover_artist"].ToString());
+                item.SubItems.Add(rdr["editor"].ToString());
+                item.SubItems.Add(rdr["publisher"].ToString());
+                item.SubItems.Add(rdr["imprint"].ToString());
                 item.SubItems.Add(rdr["genre"].ToString());
+                item.SubItems.Add(rdr["page_count"].ToString());
+                item.SubItems.Add(rdr["language"].ToString());
+                item.SubItems.Add(rdr["format"].ToString());
                 item.SubItems.Add(rdr["age_rating"].ToString());
-                item.SubItems.Add(rdr["file_name"].ToString());
+                item.SubItems.Add(rdr["black_and_white"].ToString());
+                item.SubItems.Add(rdr["manga"].ToString());
+                item.SubItems.Add(rdr["library"].ToString());
+
                 listView1.Items.Add(item);
             }
             rdr.Close();
@@ -278,46 +305,46 @@ namespace Capstone_Book_Main
             ExtractOneButton.Visible = !ExtractOneButton.Visible;
             OriginDelBox.Visible = !OriginDelBox.Visible;
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = data.Tables[0];
+            TitleBox.Text = listView1.SelectedItems[0].SubItems[2].Text;
+            SeriesBox.Text = listView1.SelectedItems[0].SubItems[3].Text;
+            NumberBox.Text = listView1.SelectedItems[0].SubItems[4].Text;
+            BookNumberBox.Text = listView1.SelectedItems[0].SubItems[5].Text;
+            CountBox.Text = listView1.SelectedItems[0].SubItems[6].Text;
+            VolumeBox.Text = listView1.SelectedItems[0].SubItems[7].Text;
+            AlternateSeriesBox.Text = listView1.SelectedItems[0].SubItems[8].Text;
+            StoryArcBox.Text = listView1.SelectedItems[0].SubItems[10].Text;
+            SeriesGroupBox.Text = listView1.SelectedItems[0].SubItems[11].Text;
+            YearBox.Text = listView1.SelectedItems[0].SubItems[13].Text;
+            MonthBox.Text = listView1.SelectedItems[0].SubItems[14].Text;
+            DayBox.Text = listView1.SelectedItems[0].SubItems[15].Text;
+            WriterBox.Text = listView1.SelectedItems[0].SubItems[16].Text;
+            PencillerBox.Text = listView1.SelectedItems[0].SubItems[17].Text;
+            InkerBox.Text = listView1.SelectedItems[0].SubItems[18].Text;
+            ColoristBox.Text = listView1.SelectedItems[0].SubItems[19].Text;
+            LettererBox.Text = listView1.SelectedItems[0].SubItems[20].Text;
+            CoverArtistBox.Text = listView1.SelectedItems[0].SubItems[21].Text;
+            EditorBox.Text = listView1.SelectedItems[0].SubItems[22].Text;
+            PublisherBox.Text = listView1.SelectedItems[0].SubItems[23].Text;
+            ImprintBox.Text = listView1.SelectedItems[0].SubItems[24].Text;
+            GenreBox.Text = listView1.SelectedItems[0].SubItems[25].Text;
+            PageCountBox.Text = listView1.SelectedItems[0].SubItems[26].Text;
+            LanguageBox.Text = listView1.SelectedItems[0].SubItems[27].Text;
+            AgeRatingBox.Text = listView1.SelectedItems[0].SubItems[29].Text;
 
-            foreach (DataRow row in dt.Rows)
+            if (listView1.SelectedItems[0].SubItems[30].Text == "B")
             {
-                TitleBox.Text = row["title"].ToString();
-                SeriesBox.Text = row["series"].ToString();
-                NumberBox.Text = row["number"].ToString();
-                BookNumberBox.Text = row["booknumber"].ToString();
-                CountBox.Text = row["count"].ToString();
-                VolumeBox.Text = row["volume"].ToString();
-                AlternateSeriesBox.Text = row["alternate_series"].ToString();
-                StoryArcBox.Text = row["storyarc"].ToString();
-                SeriesGroupBox.Text = row["seriesgroup"].ToString();
-                YearBox.Text = row["year"].ToString();
-                MonthBox.Text = row["month"].ToString();
-                DayBox.Text = row["DAY"].ToString();
-                WriterBox.Text = row["writer"].ToString();
-                PencillerBox.Text = row["penciller"].ToString();
-                InkerBox.Text = row["inker"].ToString();
-                ColoristBox.Text = row["colorist"].ToString();
-                LettererBox.Text = row["Letterer"].ToString();
-                CoverArtistBox.Text = row["cover_artist"].ToString();
-                EditorBox.Text = row["editor"].ToString();
-                PublisherBox.Text = row["publisher"].ToString();
-                ImprintBox.Text = row["imprint"].ToString();
-                GenreBox.Text = row["genre"].ToString();
-                PageCountBox.Text = row["page_count"].ToString();
-                LanguageBox.Text = row["language"].ToString();
-                AgeRatingBox.Text = row["age_rating"].ToString();
-                if("true"==row["blackandwhite"].ToString())
-                    IsBlackButton.Checked = true;
-                else
-                    IsColorButton.Checked = true;
+                IsBlackButton.Checked = true;
+                IsColorButton.Checked = false;
             }
-            
-        }
 
+            else
+            {
+                IsBlackButton.Checked = false;
+                IsColorButton.Checked = true;
+            }
+        }
         private void StartButton_Click(object sender, EventArgs e)
         {
             string path = Properties.UserConfig.Default.Filepath + @"\" + listView1.SelectedItems[0].SubItems[7].Text;
