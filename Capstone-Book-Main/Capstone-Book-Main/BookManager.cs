@@ -17,7 +17,7 @@ namespace Capstone_Book_Main
 {
     public partial class BookManager : UserControl
     {
-        string dbroute = "MyDB.sqlite";
+        string dbroute;
         string file_path = "";
         DataSet data = new DataSet();
 
@@ -66,6 +66,7 @@ namespace Capstone_Book_Main
             InitializeComponent();
 
             //이부분부터 지울것
+            dbroute = Properties.UserConfig.Default.path + "\\db.sqlite";
             FileInfo fileInfo = new FileInfo(dbroute);
 
             if (fileInfo.Exists)
@@ -83,8 +84,9 @@ namespace Capstone_Book_Main
                 FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
                 dialog.ShowDialog();
                 file_path = dialog.SelectedPath;
-                Properties.UserConfig.Default.Filepath = file_path;
+                Properties.UserConfig.Default.path = file_path;
                 Properties.UserConfig.Default.Save();
+                dbroute = file_path + "\\db.sqlite";
 
                 Db_regist(file_path); // DB에 파일 등록
                 Db_view();
@@ -103,7 +105,7 @@ namespace Capstone_Book_Main
                 }
                 // 테이블 생성
 
-                SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+                SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=" + dbroute + ";Version=3;");
                 m_dbConnection.Open();
 
 
@@ -132,7 +134,7 @@ namespace Capstone_Book_Main
         private void Db_regist(string file_path) // 파일을 DB에 등록
         {
 
-            SQLiteConnection conn = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+            SQLiteConnection conn = new SQLiteConnection("Data Source="+dbroute+";Version=3;");
 
             string[] dirs = Directory.GetDirectories(file_path);
             string[] files = Directory.GetFiles(file_path);
@@ -141,7 +143,7 @@ namespace Capstone_Book_Main
 
             foreach (String file in files)
             {
-                string f_path = Path.GetDirectoryName(file);
+                string f_path = Path.GetFullPath(file);
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
@@ -175,7 +177,7 @@ namespace Capstone_Book_Main
         private void Db_view()
         {
 
-            SQLiteConnection connStr = new SQLiteConnection("Data Source=MyDB.sqlite;Version=3;");
+            SQLiteConnection connStr = new SQLiteConnection("Data Source="+dbroute+";Version=3;");
 
             using (var conn = new SQLiteConnection(connStr))
             {
@@ -437,7 +439,7 @@ namespace Capstone_Book_Main
         }
         private void StartButton_Click(object sender, EventArgs e)
         {
-            string path = Properties.UserConfig.Default.Filepath + @"\" + listView1.SelectedItems[0].SubItems[7].Text;
+            string path = listView1.SelectedItems[0].SubItems[33].Text;
             System.Diagnostics.Process.Start(@"C:\Program Files\Honeyview\Honeyview.exe", path);
         }
 
@@ -448,60 +450,71 @@ namespace Capstone_Book_Main
 
         private void ExtractOneButton_Click(object sender, EventArgs e)
         {
-            //FolderBrowserDialog dialog = new FolderBrowserDialog();
-            //dialog.ShowDialog();
-            //string startPath = dialog.SelectedPath;
-            OpenFileDialog fd = new OpenFileDialog();
-            fd.DefaultExt = "zip";
-            fd.Filter = "압축파일 (*.zip; *.cbz)| *.zip; *.cbz";
-            fd.ShowDialog();
-            string zipPath = fd.FileName;
-            ZipFile.ExtractToDirectory(zipPath, Directory.GetParent(zipPath) + "\\temp");
-            string startPath = Directory.GetParent(zipPath) + "\\temp";
-            CreateCBZ(startPath);
+            string startPath = listView1.SelectedItems[0].SubItems[33].Text;
+            if (Path.GetExtension(startPath) == ".zip")
+            {
+                string zipPath = Directory.GetParent(startPath) + "\\temp";
+                ZipFile.ExtractToDirectory(startPath, zipPath);
+                CreateCBZ(startPath, zipPath);
+            }
+            else
+            {
+                CreateCBZ(startPath);
+            }
         }
 
         private void CreateCBZ(string startPath)
         {
             CreateXml(startPath);
-            //ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
+            ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
+            if (OriginDelBox.Checked)
+                Directory.Delete(startPath, true);
+        }
+
+        private void CreateCBZ(string startPath, string zipPath)
+        {
+            CreateXml(zipPath);
+            ZipFile.CreateFromDirectory(zipPath, Path.ChangeExtension(startPath,".cbz"));
+            Directory.Delete(zipPath, true);
+            if (OriginDelBox.Checked)
+                File.Delete(startPath);
         }
 
         private void CreateXml(string startPath)
         {
-            string url = startPath + "\\ComicInfo.xml";
+            string url = Directory.GetParent(startPath) + "\\temp" + "\\ComicInfo.xml";
             XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
             XElement xroot = new XElement("ComicInfo",
-                new XElement("title", listView1.SelectedItems[0].SubItems[1].Text),
-                new XElement("Count", listView1.SelectedItems[0].SubItems[2].Text),
-                new XElement("Number", listView1.SelectedItems[0].SubItems[3].Text),
-                new XElement("Count", listView1.SelectedItems[0].SubItems[5].Text),
-                new XElement("Volume", listView1.SelectedItems[0].SubItems[6].Text),
-                new XElement("AlternateSeries", listView1.SelectedItems[0].SubItems[7].Text),
-                new XElement("AlternateNumber", listView1.SelectedItems[0].SubItems[8].Text),
-                new XElement("StoryArc", listView1.SelectedItems[0].SubItems[9].Text),
-                new XElement("SeriesGroup", listView1.SelectedItems[0].SubItems[10].Text),
-                new XElement("AlternateCount", listView1.SelectedItems[0].SubItems[11].Text),
-                new XElement("Year", listView1.SelectedItems[0].SubItems[12].Text),
-                new XElement("Month", listView1.SelectedItems[0].SubItems[13].Text),
-                new XElement("Day", listView1.SelectedItems[0].SubItems[14].Text),
-                new XElement("Writer", listView1.SelectedItems[0].SubItems[15].Text),
-                new XElement("Penciller", listView1.SelectedItems[0].SubItems[16].Text),
-                new XElement("Inker", listView1.SelectedItems[0].SubItems[17].Text),
-                new XElement("Colorist", listView1.SelectedItems[0].SubItems[18].Text),
-                new XElement("Letterer", listView1.SelectedItems[0].SubItems[19].Text),
-                new XElement("CoverArtist", listView1.SelectedItems[0].SubItems[20].Text),
-                new XElement("Editor", listView1.SelectedItems[0].SubItems[21].Text),
-                new XElement("Publisher", listView1.SelectedItems[0].SubItems[22].Text),
-                new XElement("Imprint", listView1.SelectedItems[0].SubItems[23].Text),
-                new XElement("Genre", listView1.SelectedItems[0].SubItems[24].Text),
-                new XElement("PageCount", listView1.SelectedItems[0].SubItems[25].Text),
-                new XElement("LanguageISO", listView1.SelectedItems[0].SubItems[26].Text),
-                new XElement("Format", listView1.SelectedItems[0].SubItems[27].Text),
-                new XElement("AgeRating", listView1.SelectedItems[0].SubItems[28].Text),
-                new XElement("BlackAndWhite", listView1.SelectedItems[0].SubItems[29].Text),
-                new XElement("Manga", listView1.SelectedItems[0].SubItems[30].Text),
-                new XElement("BookNumber", listView1.SelectedItems[0].SubItems[4].Text)
+                new XElement("title", listView1.SelectedItems[0].SubItems[2].Text),
+                new XElement("Count", listView1.SelectedItems[0].SubItems[3].Text),
+                new XElement("Number", listView1.SelectedItems[0].SubItems[4].Text),
+                new XElement("Count", listView1.SelectedItems[0].SubItems[6].Text),
+                new XElement("Volume", listView1.SelectedItems[0].SubItems[7].Text),
+                new XElement("AlternateSeries", listView1.SelectedItems[0].SubItems[8].Text),
+                new XElement("AlternateNumber", listView1.SelectedItems[0].SubItems[9].Text),
+                new XElement("StoryArc", listView1.SelectedItems[0].SubItems[10].Text),
+                new XElement("SeriesGroup", listView1.SelectedItems[0].SubItems[11].Text),
+                new XElement("AlternateCount", listView1.SelectedItems[0].SubItems[12].Text),
+                new XElement("Year", listView1.SelectedItems[0].SubItems[13].Text),
+                new XElement("Month", listView1.SelectedItems[0].SubItems[14].Text),
+                new XElement("Day", listView1.SelectedItems[0].SubItems[15].Text),
+                new XElement("Writer", listView1.SelectedItems[0].SubItems[16].Text),
+                new XElement("Penciller", listView1.SelectedItems[0].SubItems[17].Text),
+                new XElement("Inker", listView1.SelectedItems[0].SubItems[18].Text),
+                new XElement("Colorist", listView1.SelectedItems[0].SubItems[19].Text),
+                new XElement("Letterer", listView1.SelectedItems[0].SubItems[20].Text),
+                new XElement("CoverArtist", listView1.SelectedItems[0].SubItems[21].Text),
+                new XElement("Editor", listView1.SelectedItems[0].SubItems[22].Text),
+                new XElement("Publisher", listView1.SelectedItems[0].SubItems[23].Text),
+                new XElement("Imprint", listView1.SelectedItems[0].SubItems[24].Text),
+                new XElement("Genre", listView1.SelectedItems[0].SubItems[25].Text),
+                new XElement("PageCount", listView1.SelectedItems[0].SubItems[26].Text),
+                new XElement("LanguageISO", listView1.SelectedItems[0].SubItems[27].Text),
+                new XElement("Format", listView1.SelectedItems[0].SubItems[28].Text),
+                new XElement("AgeRating", listView1.SelectedItems[0].SubItems[29].Text),
+                new XElement("BlackAndWhite", listView1.SelectedItems[0].SubItems[30].Text),
+                new XElement("Manga", listView1.SelectedItems[0].SubItems[31].Text),
+                new XElement("BookNumber", listView1.SelectedItems[0].SubItems[5].Text)
                 );
             xdoc.Add(xroot);
             xdoc.Save(url);
