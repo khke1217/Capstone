@@ -139,7 +139,7 @@ namespace Capstone_Book_Main
 
             foreach (String file in files)
             {
-                string f_path = Path.GetDirectoryName(file);
+                string f_path = Path.GetFullPath(file);
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
