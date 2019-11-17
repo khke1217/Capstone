@@ -145,7 +145,7 @@ namespace Capstone_Book_Main
                     case ".cbz":
                     case ".cbr":
                     case ".zip":
-                        string sql = "insert or ignore into R_BOOK (file_name, file_path) values ('" + Path.GetFileName(file) + "', '" + f_path + "');";
+                        string sql = "insert or ignore into R_BOOK (title, file_name, file_path) values ('" + Path.GetFileNameWithoutExtension(file) + "', '" + Path.GetFileName(file) + "', '" + f_path + "');";
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
                         command.ExecuteNonQuery();
 
