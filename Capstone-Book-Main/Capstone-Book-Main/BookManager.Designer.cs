@@ -443,7 +443,7 @@
             // dB새로고침ToolStripMenuItem
             // 
             this.dB새로고침ToolStripMenuItem.Name = "dB새로고침ToolStripMenuItem";
-            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dB새로고침ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.dB새로고침ToolStripMenuItem.Text = "DB 새로고침";
             this.dB새로고침ToolStripMenuItem.Click += new System.EventHandler(this.dB새로고침ToolStripMenuItem_Click);
             // 

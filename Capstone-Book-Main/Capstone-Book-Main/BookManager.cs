@@ -99,7 +99,7 @@ namespace Capstone_Book_Main
         {
             try
             {
-                if (!System.IO.File.Exists(dbroute))
+                if (!File.Exists(dbroute))
                 {
                     SQLiteConnection.CreateFile(dbroute);
                 }
@@ -117,7 +117,7 @@ namespace Capstone_Book_Main
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, black_and_white BOOL, manga TEXT, library TEXT, file_path TEXT);";
+                    "age_rating TEXT, black_and_white TEXT, manga TEXT, library TEXT, file_path TEXT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -144,21 +144,42 @@ namespace Capstone_Book_Main
             foreach (String file in files)
             {
                 string f_path = Path.GetFullPath(file);
+                string sql = null;
+                SQLiteCommand command;
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
                         XDocument xdoc = readZipFile(file);
+                        IEnumerable<XElement> metas = xdoc.Elements();
+                        foreach (var meta in metas)
+                        {
+                            sql = "insert or ignore into R_BOOK " +
+                                            "(file_name, file_path, title, series, number, book_number, count, volume, alternate_series, alternate_number, storyarc, " +
+                                            "series_group, alternate_count, year, month, day, writer, penciller, inker, colorist, Letterer, cover_artist, editor, " +
+                                            "publisher , imprint, genre, page_count, language, format, age_rating, black_and_white, manga) values ('" +
+                                            Path.GetFileName(file) + "', '" + f_path + "', '" + meta.Element("Title").Value + "', '" + meta.Element("Series").Value +
+                                            "', '" + meta.Element("Number").Value + "', '" + meta.Element("BookNumber").Value + "', '" + meta.Element("Count").Value +
+                                            "', '" + meta.Element("Volume").Value + "', '" + meta.Element("AlternateSeries").Value + "', '" + meta.Element("AlternateNumber").Value +
+                                            "', '" + meta.Element("StoryArc").Value + "', '" + meta.Element("SeriesGroup").Value + "', '" + meta.Element("AlternateCount").Value +
+                                            "', '" + meta.Element("Year").Value + "', '" + meta.Element("Month").Value + "', '" + meta.Element("Day").Value +
+                                            "', '" + meta.Element("Writer").Value + "', '" + meta.Element("Penciller").Value + "', '" + meta.Element("Inker").Value +
+                                            "', '" + meta.Element("Colorist").Value + "', '" + meta.Element("Letterer").Value + "', '" + meta.Element("CoverArtist").Value +
+                                            "', '" + meta.Element("Editor").Value + "', '" + meta.Element("Publisher").Value + "', '" + meta.Element("Imprint").Value +
+                                            "', '" + meta.Element("Genre").Value + "', '" + meta.Element("PageCount").Value + "', '" + meta.Element("LanguageISO").Value +
+                                            "', '" + meta.Element("Format").Value + "', '" + meta.Element("AgeRating").Value + "', '" + meta.Element("BlackAndWhite").Value + 
+                                            "', '" + meta.Element("Manga").Value + "')";
+                            command = new SQLiteCommand(sql, conn);
+                            command.ExecuteNonQuery();
+                        }
                         break;
                     case ".zip":
-                        string sql = "insert or ignore into R_BOOK (title, file_name, file_path) values ('" + Path.GetFileNameWithoutExtension(file)+ "', '" + Path.GetFileName(file) + "', '" + f_path + "');";
-                        SQLiteCommand command = new SQLiteCommand(sql, conn);
+                        sql = "insert or ignore into R_BOOK (title, file_name, file_path) values ('" + Path.GetFileNameWithoutExtension(file)+ "', '" + Path.GetFileName(file) + "', '" + f_path + "');";
+                        command = new SQLiteCommand(sql, conn);
                         command.ExecuteNonQuery();
-
                         break;
                     default:
                         break;
                 }
-
             }
             if (dirs.Length > 0)
             {
@@ -452,6 +473,7 @@ namespace Capstone_Book_Main
         private void ExtractOneButton_Click(object sender, EventArgs e)
         {
             ExtractToCbz(listView1.SelectedItems[0].SubItems[33].Text);
+            refresh();
         }
 
         private void ExtractToCbz(string startPath)
@@ -466,8 +488,6 @@ namespace Capstone_Book_Main
             {
                 CreateCBZ(startPath, Convert.ToInt32(listView1.SelectedIndices[0].ToString()));
             }
-
-            refresh();
         }
 
         private void CreateCBZ(string startPath, int n)
@@ -500,38 +520,49 @@ namespace Capstone_Book_Main
         private void CreateXml(string startPath, int n)
         {
             string url = Directory.GetParent(startPath) + "\\temp" + "\\ComicInfo.xml";
+
+            string[] data = new string[30];
+
+            for(int i = 0; i < 30; i++)
+            {
+                if (listView1.Items[n].SubItems[i + 2].Text == "")
+                    data[i] = "N/A";
+                else
+                    data[i] = listView1.Items[n].SubItems[i + 2].Text;
+            }
+
             XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
             XElement xroot = new XElement("ComicInfo",
-                new XElement("title", listView1.Items[n].SubItems[2].Text),
-                new XElement("Count", listView1.Items[n].SubItems[3].Text),
-                new XElement("Number", listView1.Items[n].SubItems[4].Text),
-                new XElement("Count", listView1.Items[n].SubItems[6].Text),
-                new XElement("Volume", listView1.Items[n].SubItems[7].Text),
-                new XElement("AlternateSeries", listView1.Items[n].SubItems[8].Text),
-                new XElement("AlternateNumber", listView1.Items[n].SubItems[9].Text),
-                new XElement("StoryArc", listView1.Items[n].SubItems[10].Text),
-                new XElement("SeriesGroup", listView1.Items[n].SubItems[11].Text),
-                new XElement("AlternateCount", listView1.Items[n].SubItems[12].Text),
-                new XElement("Year", listView1.Items[n].SubItems[13].Text),
-                new XElement("Month", listView1.Items[n].SubItems[14].Text),
-                new XElement("Day", listView1.Items[n].SubItems[15].Text),
-                new XElement("Writer", listView1.Items[n].SubItems[16].Text),
-                new XElement("Penciller", listView1.Items[n].SubItems[17].Text),
-                new XElement("Inker", listView1.Items[n].SubItems[18].Text),
-                new XElement("Colorist", listView1.Items[n].SubItems[19].Text),
-                new XElement("Letterer", listView1.Items[n].SubItems[20].Text),
-                new XElement("CoverArtist", listView1.Items[n].SubItems[21].Text),
-                new XElement("Editor", listView1.Items[n].SubItems[22].Text),
-                new XElement("Publisher", listView1.Items[n].SubItems[23].Text),
-                new XElement("Imprint", listView1.Items[n].SubItems[24].Text),
-                new XElement("Genre", listView1.Items[n].SubItems[25].Text),
-                new XElement("PageCount", listView1.Items[n].SubItems[26].Text),
-                new XElement("LanguageISO", listView1.Items[n].SubItems[27].Text),
-                new XElement("Format", listView1.Items[n].SubItems[28].Text),
-                new XElement("AgeRating", listView1.Items[n].SubItems[29].Text),
-                new XElement("BlackAndWhite", listView1.Items[n].SubItems[30].Text),
-                new XElement("Manga", listView1.Items[n].SubItems[31].Text),
-                new XElement("BookNumber", listView1.Items[n].SubItems[5].Text)
+                new XElement("Title", data[0]),
+                new XElement("Series",data[1]),
+                new XElement("Number",data[2]),
+                new XElement("BookNumber",data[3]),
+                new XElement("Count",data[4]),
+                new XElement("Volume",data[5]),
+                new XElement("AlternateSeries",data[6]),
+                new XElement("AlternateNumber",data[7]),
+                new XElement("StoryArc",data[8]),
+                new XElement("SeriesGroup",data[9]),
+                new XElement("AlternateCount",data[10]),
+                new XElement("Year",data[11]),
+                new XElement("Month",data[12]),
+                new XElement("Day",data[13]),
+                new XElement("Writer",data[14]),
+                new XElement("Penciller",data[15]),
+                new XElement("Inker",data[16]),
+                new XElement("Colorist",data[17]),
+                new XElement("Letterer",data[18]),
+                new XElement("CoverArtist",data[19]),
+                new XElement("Editor",data[20]),
+                new XElement("Publisher",data[21]),
+                new XElement("Imprint",data[22]),
+                new XElement("Genre",data[23]),
+                new XElement("PageCount",data[24]),
+                new XElement("LanguageISO",data[25]),
+                new XElement("Format",data[26]),
+                new XElement("AgeRating",data[27]),
+                new XElement("BlackAndWhite",data[28]),
+                new XElement("Manga",data[29])                
                 );
             xdoc.Add(xroot);
             xdoc.Save(url);
@@ -545,10 +576,15 @@ namespace Capstone_Book_Main
         private void refresh()
         {
             FileInfo fileInfo = new FileInfo(dbroute);
-
-            fileInfo.Delete();
-            listView1.Items.Clear();
-
+            try
+            {
+                fileInfo.Delete();
+                listView1.Items.Clear();
+            }
+            catch
+            {
+                MessageBox.Show("DB가 사용중입니다. 잠시 후 다시 시도해 주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             Db_init(); // DB 생성/초기화
 
             dbroute = Properties.UserConfig.Default.path + "\\db.sqlite";
@@ -559,10 +595,9 @@ namespace Capstone_Book_Main
 
         private XDocument readZipFile(String filePath)
         {
-            String fileContents = "";
             XDocument xdoc = null;
-            //try
-            //{
+            try
+            {
                 if (File.Exists(filePath))
                 {
                     ZipArchive apcZipFile = ZipFile.Open(filePath, ZipArchiveMode.Read);
@@ -578,11 +613,11 @@ namespace Capstone_Book_Main
                 }
 
                 return xdoc;
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     } 
 }
