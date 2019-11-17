@@ -147,7 +147,8 @@ namespace Capstone_Book_Main
                 switch (Path.GetExtension(file))
                 {
                     case ".cbz":
-                    case ".cbr":
+                        XDocument xdoc = readZipFile(file);
+                        break;
                     case ".zip":
                         string sql = "insert or ignore into R_BOOK (title, file_name, file_path) values ('" + Path.GetFileNameWithoutExtension(file)+ "', '" + Path.GetFileName(file) + "', '" + f_path + "');";
                         SQLiteCommand command = new SQLiteCommand(sql, conn);
@@ -459,27 +460,27 @@ namespace Capstone_Book_Main
             {
                 string zipPath = Directory.GetParent(startPath) + "\\temp";
                 ZipFile.ExtractToDirectory(startPath, zipPath);
-                CreateCBZ(startPath, zipPath);
+                CreateCBZ(startPath, zipPath, Convert.ToInt32(listView1.SelectedIndices[0].ToString()));
             }
             else
             {
-                CreateCBZ(startPath);
+                CreateCBZ(startPath, Convert.ToInt32(listView1.SelectedIndices[0].ToString()));
             }
 
-            refrash();
+            refresh();
         }
 
-        private void CreateCBZ(string startPath)
+        private void CreateCBZ(string startPath, int n)
         {
-            CreateXml(startPath);
+            CreateXml(startPath, n);
             ZipFile.CreateFromDirectory(startPath, startPath + ".cbz");
             if (OriginDelBox.Checked)
                 Directory.Delete(startPath, true);
         }
 
-        private void CreateCBZ(string startPath, string zipPath)
+        private void CreateCBZ(string startPath, string zipPath, int n)
         {
-            CreateXml(zipPath);
+            CreateXml(zipPath, n);
             try
             {
                 ZipFile.CreateFromDirectory(zipPath, Path.ChangeExtension(startPath, ".cbz"));
@@ -496,41 +497,41 @@ namespace Capstone_Book_Main
             }  
         }
 
-        private void CreateXml(string startPath)
+        private void CreateXml(string startPath, int n)
         {
             string url = Directory.GetParent(startPath) + "\\temp" + "\\ComicInfo.xml";
             XDocument xdoc = new XDocument(new XDeclaration("1.0", "UTF-8", null));
             XElement xroot = new XElement("ComicInfo",
-                new XElement("title", listView1.SelectedItems[0].SubItems[2].Text),
-                new XElement("Count", listView1.SelectedItems[0].SubItems[3].Text),
-                new XElement("Number", listView1.SelectedItems[0].SubItems[4].Text),
-                new XElement("Count", listView1.SelectedItems[0].SubItems[6].Text),
-                new XElement("Volume", listView1.SelectedItems[0].SubItems[7].Text),
-                new XElement("AlternateSeries", listView1.SelectedItems[0].SubItems[8].Text),
-                new XElement("AlternateNumber", listView1.SelectedItems[0].SubItems[9].Text),
-                new XElement("StoryArc", listView1.SelectedItems[0].SubItems[10].Text),
-                new XElement("SeriesGroup", listView1.SelectedItems[0].SubItems[11].Text),
-                new XElement("AlternateCount", listView1.SelectedItems[0].SubItems[12].Text),
-                new XElement("Year", listView1.SelectedItems[0].SubItems[13].Text),
-                new XElement("Month", listView1.SelectedItems[0].SubItems[14].Text),
-                new XElement("Day", listView1.SelectedItems[0].SubItems[15].Text),
-                new XElement("Writer", listView1.SelectedItems[0].SubItems[16].Text),
-                new XElement("Penciller", listView1.SelectedItems[0].SubItems[17].Text),
-                new XElement("Inker", listView1.SelectedItems[0].SubItems[18].Text),
-                new XElement("Colorist", listView1.SelectedItems[0].SubItems[19].Text),
-                new XElement("Letterer", listView1.SelectedItems[0].SubItems[20].Text),
-                new XElement("CoverArtist", listView1.SelectedItems[0].SubItems[21].Text),
-                new XElement("Editor", listView1.SelectedItems[0].SubItems[22].Text),
-                new XElement("Publisher", listView1.SelectedItems[0].SubItems[23].Text),
-                new XElement("Imprint", listView1.SelectedItems[0].SubItems[24].Text),
-                new XElement("Genre", listView1.SelectedItems[0].SubItems[25].Text),
-                new XElement("PageCount", listView1.SelectedItems[0].SubItems[26].Text),
-                new XElement("LanguageISO", listView1.SelectedItems[0].SubItems[27].Text),
-                new XElement("Format", listView1.SelectedItems[0].SubItems[28].Text),
-                new XElement("AgeRating", listView1.SelectedItems[0].SubItems[29].Text),
-                new XElement("BlackAndWhite", listView1.SelectedItems[0].SubItems[30].Text),
-                new XElement("Manga", listView1.SelectedItems[0].SubItems[31].Text),
-                new XElement("BookNumber", listView1.SelectedItems[0].SubItems[5].Text)
+                new XElement("title", listView1.Items[n].SubItems[2].Text),
+                new XElement("Count", listView1.Items[n].SubItems[3].Text),
+                new XElement("Number", listView1.Items[n].SubItems[4].Text),
+                new XElement("Count", listView1.Items[n].SubItems[6].Text),
+                new XElement("Volume", listView1.Items[n].SubItems[7].Text),
+                new XElement("AlternateSeries", listView1.Items[n].SubItems[8].Text),
+                new XElement("AlternateNumber", listView1.Items[n].SubItems[9].Text),
+                new XElement("StoryArc", listView1.Items[n].SubItems[10].Text),
+                new XElement("SeriesGroup", listView1.Items[n].SubItems[11].Text),
+                new XElement("AlternateCount", listView1.Items[n].SubItems[12].Text),
+                new XElement("Year", listView1.Items[n].SubItems[13].Text),
+                new XElement("Month", listView1.Items[n].SubItems[14].Text),
+                new XElement("Day", listView1.Items[n].SubItems[15].Text),
+                new XElement("Writer", listView1.Items[n].SubItems[16].Text),
+                new XElement("Penciller", listView1.Items[n].SubItems[17].Text),
+                new XElement("Inker", listView1.Items[n].SubItems[18].Text),
+                new XElement("Colorist", listView1.Items[n].SubItems[19].Text),
+                new XElement("Letterer", listView1.Items[n].SubItems[20].Text),
+                new XElement("CoverArtist", listView1.Items[n].SubItems[21].Text),
+                new XElement("Editor", listView1.Items[n].SubItems[22].Text),
+                new XElement("Publisher", listView1.Items[n].SubItems[23].Text),
+                new XElement("Imprint", listView1.Items[n].SubItems[24].Text),
+                new XElement("Genre", listView1.Items[n].SubItems[25].Text),
+                new XElement("PageCount", listView1.Items[n].SubItems[26].Text),
+                new XElement("LanguageISO", listView1.Items[n].SubItems[27].Text),
+                new XElement("Format", listView1.Items[n].SubItems[28].Text),
+                new XElement("AgeRating", listView1.Items[n].SubItems[29].Text),
+                new XElement("BlackAndWhite", listView1.Items[n].SubItems[30].Text),
+                new XElement("Manga", listView1.Items[n].SubItems[31].Text),
+                new XElement("BookNumber", listView1.Items[n].SubItems[5].Text)
                 );
             xdoc.Add(xroot);
             xdoc.Save(url);
@@ -538,10 +539,10 @@ namespace Capstone_Book_Main
 
         private void dB새로고침ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            refrash();
+            refresh();
         }
 
-        private void refrash()
+        private void refresh()
         {
             FileInfo fileInfo = new FileInfo(dbroute);
 
@@ -550,16 +551,38 @@ namespace Capstone_Book_Main
 
             Db_init(); // DB 생성/초기화
 
-            FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
-            dialog.ShowDialog();
-            file_path = dialog.SelectedPath;
-            Properties.UserConfig.Default.path = file_path;
-            Properties.UserConfig.Default.Save();
-            dbroute = file_path + "\\db.sqlite";
+            dbroute = Properties.UserConfig.Default.path + "\\db.sqlite";
 
-            Db_regist(file_path); // DB에 파일 등록
+            Db_regist(Properties.UserConfig.Default.path); // DB에 파일 등록
             Db_view();
         }
-    }
 
+        private XDocument readZipFile(String filePath)
+        {
+            String fileContents = "";
+            XDocument xdoc = null;
+            //try
+            //{
+                if (File.Exists(filePath))
+                {
+                    ZipArchive apcZipFile = ZipFile.Open(filePath, ZipArchiveMode.Read);
+                    foreach (ZipArchiveEntry entry in apcZipFile.Entries)
+                    {
+                        if (entry.Name.ToUpper().EndsWith(".XML"))
+                        {
+                            ZipArchiveEntry zipEntry = apcZipFile.GetEntry(entry.Name);
+                            xdoc = XDocument.Load(zipEntry.Open());
+                            return xdoc;
+                        }
+                    }
+                }
+
+                return xdoc;
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+        }
+    } 
 }
