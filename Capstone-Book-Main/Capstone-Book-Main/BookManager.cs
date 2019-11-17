@@ -117,7 +117,7 @@ namespace Capstone_Book_Main
                     "writer TEXT, penciller TEXT, inker TEXT, colorist TEXT, " +
                     "Letterer TEXT, cover_artist TEXT, editor TEXT, publisher TEXT, " +
                     "imprint TEXT, genre TEXT, page_count INT, language TEXT, format TEXT, " +
-                    "age_rating TEXT, black_and_white BOOL, manga TEXT, library TEXT, file_path TEXT);";
+                    "age_rating TEXT, black_and_white TEXT, manga TEXT, library TEXT, file_path TEXT);";
 
                 SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
                 command.ExecuteNonQuery();
@@ -446,12 +446,16 @@ namespace Capstone_Book_Main
 
         private void ExtractAllButton_Click(object sender, EventArgs e)
         {
-            
+            for (int n = 0; n < listView1.Items.Count; n++)
+            {
+                ExtractToCbz(listView1.Items[n].SubItems[33].Text);
+            }
         }
 
         private void ExtractOneButton_Click(object sender, EventArgs e)
         {
             ExtractToCbz(listView1.SelectedItems[0].SubItems[33].Text);
+            refresh();
         }
 
         private void ExtractToCbz(string startPath)
@@ -467,7 +471,7 @@ namespace Capstone_Book_Main
                 CreateCBZ(startPath, Convert.ToInt32(listView1.SelectedIndices[0].ToString()));
             }
 
-            refresh();
+  
         }
 
         private void CreateCBZ(string startPath, int n)
