@@ -17,8 +17,8 @@ namespace Capstone_Book_Main
 {
     public partial class BookManager : UserControl
     {
-        string dbroute;
-        string file_path = "";
+        public string dbroute = @"F:\샘플\db.sqlite";
+        public string file_path = @"F:\샘플";
         DataSet data = new DataSet();
 
         public class StringMeta
@@ -65,32 +65,10 @@ namespace Capstone_Book_Main
         {
             InitializeComponent();
 
-            //이부분부터 지울것
-            dbroute = Properties.UserConfig.Default.path + "\\db.sqlite";
-            FileInfo fileInfo = new FileInfo(dbroute);
+            Db_init(); // DB 생성/초기화
+            Db_regist(file_path);
+            Db_view();
 
-            if (fileInfo.Exists)
-            {
-                MessageBox.Show("DB 파일이 있습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Db_view();
-            }
-            else
-            {
-                MessageBox.Show("DB 파일이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //이부분까지 지울것
-
-                Db_init(); // DB 생성/초기화
-
-                FolderBrowserDialog dialog = new FolderBrowserDialog(); // 폴더 선택
-                dialog.ShowDialog();
-                file_path = dialog.SelectedPath;
-                Properties.UserConfig.Default.path = file_path;
-                Properties.UserConfig.Default.Save();
-                dbroute = file_path + "\\db.sqlite";
-
-                Db_regist(file_path); // DB에 파일 등록
-                Db_view();
-            }
         }
 
         bool canmodi = false;
@@ -110,7 +88,7 @@ namespace Capstone_Book_Main
 
 
                 string sql = "CREATE TABLE IF NOT EXISTS R_BOOK (id INTEGER PRIMARY KEY AUTOINCREMENT, file_name TEXT unique," +
-                    "title TEXT, series TEXT, number INT, book_number INT, " +
+                    "title TEXT, series TEXT, number INT, book_number TEXT, " +
                     "count INT, volume INT, alternate_series TEXT, " +
                     "alternate_number INT, storyarc TEXT, series_group TEXT, " +
                     "alternate_count INT, year INT, month INT, day INT, " +
@@ -150,26 +128,33 @@ namespace Capstone_Book_Main
                 {
                     case ".cbz":
                         XDocument xdoc = readZipFile(file);
-                        IEnumerable<XElement> metas = xdoc.Elements();
-                        foreach (var meta in metas)
+                        try
                         {
-                            sql = "insert or ignore into R_BOOK " +
-                                            "(file_name, file_path, title, series, number, book_number, count, volume, alternate_series, alternate_number, storyarc, " +
-                                            "series_group, alternate_count, year, month, day, writer, penciller, inker, colorist, Letterer, cover_artist, editor, " +
-                                            "publisher , imprint, genre, page_count, language, format, age_rating, black_and_white, manga) values ('" +
-                                            Path.GetFileName(file) + "', '" + f_path + "', '" + meta.Element("Title").Value + "', '" + meta.Element("Series").Value +
-                                            "', '" + meta.Element("Number").Value + "', '" + meta.Element("BookNumber").Value + "', '" + meta.Element("Count").Value +
-                                            "', '" + meta.Element("Volume").Value + "', '" + meta.Element("AlternateSeries").Value + "', '" + meta.Element("AlternateNumber").Value +
-                                            "', '" + meta.Element("StoryArc").Value + "', '" + meta.Element("SeriesGroup").Value + "', '" + meta.Element("AlternateCount").Value +
-                                            "', '" + meta.Element("Year").Value + "', '" + meta.Element("Month").Value + "', '" + meta.Element("Day").Value +
-                                            "', '" + meta.Element("Writer").Value + "', '" + meta.Element("Penciller").Value + "', '" + meta.Element("Inker").Value +
-                                            "', '" + meta.Element("Colorist").Value + "', '" + meta.Element("Letterer").Value + "', '" + meta.Element("CoverArtist").Value +
-                                            "', '" + meta.Element("Editor").Value + "', '" + meta.Element("Publisher").Value + "', '" + meta.Element("Imprint").Value +
-                                            "', '" + meta.Element("Genre").Value + "', '" + meta.Element("PageCount").Value + "', '" + meta.Element("LanguageISO").Value +
-                                            "', '" + meta.Element("Format").Value + "', '" + meta.Element("AgeRating").Value + "', '" + meta.Element("BlackAndWhite").Value + 
-                                            "', '" + meta.Element("Manga").Value + "')";
-                            command = new SQLiteCommand(sql, conn);
-                            command.ExecuteNonQuery();
+                            IEnumerable<XElement> metas = xdoc.Elements();
+
+                            foreach (var meta in metas)
+                            {
+                                sql = "insert or ignore into R_BOOK " +
+                                                "(file_name, file_path, title, series, number, book_number, count, volume, alternate_series, alternate_number, storyarc, " +
+                                                "series_group, alternate_count, year, month, day, writer, penciller, inker, colorist, Letterer, cover_artist, editor, " +
+                                                "publisher , imprint, genre, page_count, language, format, age_rating, black_and_white, manga) values ('" +
+                                                Path.GetFileName(file) + "', '" + f_path + "', '" + meta.Element("Title").Value + "', '" + meta.Element("Series").Value +
+                                                "', '" + meta.Element("Number").Value + "', '" + meta.Element("BookNumber").Value + "', '" + meta.Element("Count").Value +
+                                                "', '" + meta.Element("Volume").Value + "', '" + meta.Element("AlternateSeries").Value + "', '" + meta.Element("AlternateNumber").Value +
+                                                "', '" + meta.Element("StoryArc").Value + "', '" + meta.Element("SeriesGroup").Value + "', '" + meta.Element("AlternateCount").Value +
+                                                "', '" + meta.Element("Year").Value + "', '" + meta.Element("Month").Value + "', '" + meta.Element("Day").Value +
+                                                "', '" + meta.Element("Writer").Value + "', '" + meta.Element("Penciller").Value + "', '" + meta.Element("Inker").Value +
+                                                "', '" + meta.Element("Colorist").Value + "', '" + meta.Element("Letterer").Value + "', '" + meta.Element("CoverArtist").Value +
+                                                "', '" + meta.Element("Editor").Value + "', '" + meta.Element("Publisher").Value + "', '" + meta.Element("Imprint").Value +
+                                                "', '" + meta.Element("Genre").Value + "', '" + meta.Element("PageCount").Value + "', '" + meta.Element("LanguageISO").Value +
+                                                "', '" + meta.Element("Format").Value + "', '" + meta.Element("AgeRating").Value + "', '" + meta.Element("BlackAndWhite").Value +
+                                                "', '" + meta.Element("Manga").Value + "')";
+                                command = new SQLiteCommand(sql, conn);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        catch (System.NullReferenceException)
+                        {
                         }
                         break;
                     case ".zip":
@@ -334,9 +319,14 @@ namespace Capstone_Book_Main
         }
         private void CanmodiButton_Click(object sender, EventArgs e)
         {
-            if (!canmodi)
+            if (listView1.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show("항목을 선택하세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!canmodi)
             {
                 CanmodiButton.Text = "저장";
+                listView1.Enabled = false;
                 this.toolTip1.SetToolTip(this.CanmodiButton, "수정한 메타데이터를 저장합니다.");
                 TitleBox.ReadOnly = false;
                 SeriesBox.ReadOnly = false;
@@ -371,6 +361,7 @@ namespace Capstone_Book_Main
             else
             {
                 CanmodiButton.Text = "수정";
+                listView1.Enabled = true;
                 this.toolTip1.SetToolTip(this.CanmodiButton, "메타데이터를 수정 가능한 상태로 전환합니다.");
                 TitleBox.ReadOnly = true;
                 SeriesBox.ReadOnly = true;
@@ -467,7 +458,10 @@ namespace Capstone_Book_Main
 
         private void ExtractAllButton_Click(object sender, EventArgs e)
         {
-            
+            for (int n = 0; n < listView1.Items.Count; n++)
+            {
+                ExtractToCbz(listView1.Items[n].SubItems[33].Text);
+            }
         }
 
         private void ExtractOneButton_Click(object sender, EventArgs e)
@@ -574,17 +568,16 @@ namespace Capstone_Book_Main
             try
             {
                 fileInfo.Delete();
-                listView1.Items.Clear();
+                
             }
             catch
             {
                 MessageBox.Show("DB가 사용중입니다. 잠시 후 다시 시도해 주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            Db_init(); // DB 생성/초기화
+            listView1.Items.Clear();
 
-            dbroute = Properties.UserConfig.Default.path + "\\db.sqlite";
-
-            Db_regist(Properties.UserConfig.Default.path); // DB에 파일 등록
+            Db_init();
+            Db_regist(file_path); // DB에 파일 등록
             Db_view();
         }
 

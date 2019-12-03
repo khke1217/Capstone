@@ -73,7 +73,7 @@
             this.NumberBox = new System.Windows.Forms.TextBox();
             this.SeriesBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.새로고침ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label23 = new System.Windows.Forms.Label();
             this.BookNumberBox = new System.Windows.Forms.TextBox();
@@ -418,19 +418,20 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.파일ToolStripMenuItem});
+            this.새로고침ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 파일ToolStripMenuItem
+            // 새로고침ToolStripMenuItem
             // 
-            this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
-            this.파일ToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.파일ToolStripMenuItem.Text = "DB 새로고침";
-            this.파일ToolStripMenuItem.Click += new System.EventHandler(this.파일ToolStripMenuItem_Click);
+            this.새로고침ToolStripMenuItem.Name = "새로고침ToolStripMenuItem";
+            this.새로고침ToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.새로고침ToolStripMenuItem.Text = "DB 새로고침";
+            this.새로고침ToolStripMenuItem.ToolTipText = "DB를 새로고침합니다.";
+            this.새로고침ToolStripMenuItem.Click += new System.EventHandler(this.파일ToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -986,6 +987,7 @@
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 8;
             this.StartButton.Text = "실행";
+            this.toolTip1.SetToolTip(this.StartButton, "해당 파일을 실행합니다.");
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
@@ -996,7 +998,7 @@
             this.ExtractOneButton.Size = new System.Drawing.Size(45, 23);
             this.ExtractOneButton.TabIndex = 9;
             this.ExtractOneButton.Text = "단일";
-            this.toolTip1.SetToolTip(this.ExtractOneButton, "선택한 파일만 내보냅니다");
+            this.toolTip1.SetToolTip(this.ExtractOneButton, "선택한 파일을 메타데이터를 포함한 .cbz 내보냅니다");
             this.ExtractOneButton.UseVisualStyleBackColor = true;
             this.ExtractOneButton.Visible = false;
             this.ExtractOneButton.Click += new System.EventHandler(this.ExtractOneButton_Click);
@@ -1008,6 +1010,7 @@
             this.ExtractAllButton.Size = new System.Drawing.Size(45, 23);
             this.ExtractAllButton.TabIndex = 10;
             this.ExtractAllButton.Text = "일괄";
+            this.toolTip1.SetToolTip(this.ExtractAllButton, "모든 파일을 메타데이터를 포함한 .cbz로 내보냅니다.");
             this.ExtractAllButton.UseVisualStyleBackColor = true;
             this.ExtractAllButton.Visible = false;
             this.ExtractAllButton.Click += new System.EventHandler(this.ExtractAllButton_Click);
@@ -1035,6 +1038,7 @@
             this.OriginDelBox.Size = new System.Drawing.Size(168, 16);
             this.OriginDelBox.TabIndex = 12;
             this.OriginDelBox.Text = "내보내기 시 원본파일 삭제";
+            this.toolTip1.SetToolTip(this.OriginDelBox, "내보내기 시 원본 파일의 삭제 여부를 체크합니다.");
             this.OriginDelBox.UseVisualStyleBackColor = true;
             this.OriginDelBox.Visible = false;
             // 
@@ -1128,7 +1132,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox EditorBox;
         private System.Windows.Forms.Button ExtractAllButton;
-        private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 새로고침ToolStripMenuItem;
         private System.Windows.Forms.Button ExtractButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label23;
